@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
 
-const kPrimaryColor = Color(0xFF6F35A5);
-const kPrimaryLightColor = Color(0xFFF1E6FF);
+const kPrimaryColor = Color.fromRGBO(139, 126, 236, 1);
+const kPrimaryLightColor = Color.fromRGBO(192, 222, 255, 1);
 const title = 'Tale Weaver';
 
-// const kPrimaryColor = Colors.green;
-// const kPrimaryLightColor = Color.fromARGB(255, 155, 238, 187);
+// Login 
+const emailUsernameString = 'Username or email';
+
+// Authentication
+const emailString = 'Email';
+const usernameString = 'Username';
+const passwordString = 'Password';
+const repeatPassString = 'Repeat your password';
+
+// const kPrimaryColor = Color.fromRGBO(173, 162, 255, 1);
+// const kPrimaryLightColor = Color.fromRGBO(192, 222, 255, 1);

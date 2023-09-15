@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:tale_weaver/constants.dart';
-import 'package:tale_weaver/shared/rounded_button.dart';
-import 'package:tale_weaver/views/login/components/rounded_input.dart';
-import 'package:tale_weaver/views/login/components/rounded_input_password.dart';
+import 'package:tale_weaver/shared/auth/rounded_button.dart';
+import 'package:tale_weaver/shared/auth/rounded_input.dart';
+import 'package:tale_weaver/views/sign_up/components/auth_validators.dart';
 
 class RegistrationForm extends StatefulWidget {
   final Size size;
@@ -17,120 +18,105 @@ class RegistrationForm extends StatefulWidget {
 }
 
 class _RegistrationFormState extends State<RegistrationForm>{
-  final _formKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormBuilderState>();
 
   FocusNode emailFocusNode = FocusNode();
   FocusNode usernameFocusNode = FocusNode();
   FocusNode passwordFocusNode = FocusNode();
   FocusNode repeatPasswordFocusNode = FocusNode();
 
+  late Map<FocusNode, VoidCallback> focusCallbacks;
+
   @override
   void initState() {
     super.initState();
-    emailFocusNode.addListener(_onEmailFocusChange);
-    usernameFocusNode.addListener(_onUsernameFocusChange);
-    passwordFocusNode.addListener(_onPasswordFocusChange);
-    repeatPasswordFocusNode.addListener(_onRepeatPasswordFocusChange);
+
+    focusCallbacks = {
+      emailFocusNode: () => _onFocusChange(emailFocusNode, emailString),
+      usernameFocusNode: () => _onFocusChange(usernameFocusNode, usernameString),
+      passwordFocusNode: () => _onFocusChange(passwordFocusNode, passwordString),
+      repeatPasswordFocusNode: () => _onFocusChange(repeatPasswordFocusNode, repeatPassString),
+    };
+
+    emailFocusNode.addListener(focusCallbacks[emailFocusNode]!);
+    usernameFocusNode.addListener(focusCallbacks[usernameFocusNode]!);
+    passwordFocusNode.addListener(focusCallbacks[passwordFocusNode]!);
+    repeatPasswordFocusNode.addListener(focusCallbacks[repeatPasswordFocusNode]!);
   }
 
 
   @override
   void dispose() {
-    emailFocusNode.removeListener(_onEmailFocusChange);
-    usernameFocusNode.removeListener(_onUsernameFocusChange);
-    passwordFocusNode.removeListener(_onPasswordFocusChange);
-    repeatPasswordFocusNode.removeListener(_onRepeatPasswordFocusChange);
+    emailFocusNode.removeListener(focusCallbacks[emailFocusNode]!);
+    usernameFocusNode.removeListener(focusCallbacks[usernameFocusNode]!);
+    passwordFocusNode.removeListener(focusCallbacks[passwordFocusNode]!);
+    repeatPasswordFocusNode.removeListener(focusCallbacks[repeatPasswordFocusNode]!);
 
     emailFocusNode.dispose();
     usernameFocusNode.dispose();
     passwordFocusNode.dispose();
     repeatPasswordFocusNode.dispose();
+
     super.dispose();
   }
 
-
-  void _onEmailFocusChange() {
-    if (!emailFocusNode.hasFocus) {
-      _formKey.currentState?.validate();
+  void _onFocusChange(FocusNode node, String fieldName) {
+    if (!node.hasFocus) {
+      _formKey.currentState?.fields[fieldName]?.validate();
     }
   }
-
-  void _onUsernameFocusChange() {
-    if (!usernameFocusNode.hasFocus) {
-      _formKey.currentState?.validate();
-    }
-  }
-
-  void _onPasswordFocusChange() {
-    if (!passwordFocusNode.hasFocus) {
-      _formKey.currentState?.validate();
-    }
-  }
-
-  void _onRepeatPasswordFocusChange() {
-    if (!repeatPasswordFocusNode.hasFocus) {
-      _formKey.currentState?.validate();
-    }
-  }
-
-  String? Function(String?) emailValidator = (value) {
-    if (value == null || value.isEmpty) {
-      return 'Please enter a valid email.';
-    }
-    return null;
-  };
-
-  String? Function(String?) usernameValidator = (value) {
-    if (value == null || value.isEmpty) {
-      return 'Please enter a username.';
-    }
-    return null;
-  };
-
-  String? Function(String?) passwordValidator = (value) {
-    if (value == null || value.isEmpty) {
-      return 'Please enter a password.';
-    }
-    return null;
-  };
 
   @override
   Widget build(BuildContext context) {
 
     Widget email = RoundedInput(
       iconData: Icons.email,
-      text: 'Email',
+      text: emailString,
       validator: emailValidator,
       focusNode: emailFocusNode,
     );
 
     Widget username = RoundedInput(
       iconData: Icons.person,
-      text: 'Username',
+      text: usernameString,
       validator: usernameValidator,
       focusNode: usernameFocusNode,
     );
 
-    Widget password = RoundedInputPassword(
+    Widget password = RoundedInput(
+      obscureText: true,
       iconData: Icons.lock,
-      text: 'Password',
+      text: passwordString,
       validator: passwordValidator,
       focusNode: passwordFocusNode,
     );
 
-    Widget repeatPassword = RoundedInputPassword(
+    Widget repeatPassword = RoundedInput(
+      obscureText: true,
       iconData: Icons.lock_outlined,
-      text: 'Repeat your password',
-      validator: passwordValidator,
+      text: repeatPassString,
+      validator: repeatPasswordValidator(_formKey),
       focusNode: repeatPasswordFocusNode,
     );
 
+    handleSignUp() {
+      if (_formKey.currentState?.saveAndValidate() ?? false) {
+        // Handle successful validation
+        var email = _formKey.currentState?.fields[emailString]?.value;
+        var username = _formKey.currentState?.fields[usernameString]?.value;
+        var password = _formKey.currentState?.fields[passwordString]?.value;
+        var repeatPassword = _formKey.currentState?.fields[repeatPassString]?.value;
+
+        // send request to backend to check existance
+      }
+    }
+
     Widget signUpButton = Padding(
       padding: const EdgeInsets.only(bottom: 15, top: 15),
-      child: RoundedButton(color: kPrimaryColor, text: 'Sign Up', press: (){})
+      child: RoundedButton(color: kPrimaryColor, text: 'Sign Up', press: handleSignUp)
     );
 
-    return Form(
+    return FormBuilder(
       key: _formKey,
       child: SizedBox(
         width: widget.size.width * 0.8,
