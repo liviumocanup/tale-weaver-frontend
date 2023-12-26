@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 const kPrimaryColor = Color.fromRGBO(139, 126, 236, 1);
 const kPrimaryLightColor = Color.fromRGBO(192, 222, 255, 1);
 const title = 'Tale Weaver';
 
-// Login 
+// Login
 const emailUsernameString = 'Username or email';
 
 // Authentication

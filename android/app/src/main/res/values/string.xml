@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">StoryTeller</string>
+    <string name="facebook_app_id">874687390843144</string>
+    <string name="fb_login_protocol_scheme">fb874687390843144</string>
+    <string name="facebook_client_token">8bb84232b819f9de6bcfc18c414d32a6</string>
+</resources>
