@@ -7,12 +7,9 @@ import 'package:tale_weaver/shared/auth/oauth/divider_section.dart';
 import 'package:tale_weaver/views/auth/login/components/login_form.dart';
 import 'package:tale_weaver/shared/auth/title_section.dart';
 
-import 'package:tale_weaver/services/auth/facebook_auth_service.dart';
-
 @RoutePage(name: 'LoginRoute')
 class LoginScreen extends StatelessWidget {
-  LoginScreen({super.key});
-  final _facebookAuthService = FacebookAuthService();
+  const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,16 +27,8 @@ class LoginScreen extends StatelessWidget {
               Padding(padding: EdgeInsets.only(top: size.height * 0.05)),
               LoginForm(size: size),
               dividerSection(size),
-              continueWihSection(size, () async {
-                final token = await _facebookAuthService.loginWithFacebook();
-                if (token != null) {
-                  // Handle successful Facebook login here
-                  print("Successful");
-                } else {
-                  // Handle failed login or cancellation here
-                }
-              }),
-              AlreadyHaveAnAccount(
+              continueWihSection(size),
+              const AlreadyHaveAnAccount(
                   isAnotherAccount: false, newPageRoute: SignUpRoute()),
             ],
           ),

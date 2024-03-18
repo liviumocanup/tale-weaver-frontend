@@ -1,7 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:tale_weaver/constants.dart';
+import 'package:tale_weaver/router/app_router.gr.dart';
 import 'package:tale_weaver/shared/auth/rounded_button.dart';
 import 'package:tale_weaver/shared/auth/rounded_input.dart';
 import 'package:tale_weaver/views/auth/login/components/forgot_password_section.dart';
@@ -59,6 +61,12 @@ class _LoginFormState extends State<LoginForm> {
     }
   }
 
+  void pushPage(BuildContext context) {
+    context.router.replaceAll([
+      const HomeRoute()
+    ]);
+  }
+
   @override
   Widget build(BuildContext context) {
     Widget loginButton = Padding(
@@ -67,7 +75,8 @@ class _LoginFormState extends State<LoginForm> {
             color: kPrimaryColor,
             text: 'Log in',
             press: () {
-              _formKey.currentState?.validate();
+              // _formKey.currentState?.validate();
+              pushPage(context);
             }));
 
     return FormBuilder(

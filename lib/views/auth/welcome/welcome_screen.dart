@@ -28,12 +28,12 @@ class WelcomeScreen extends StatelessWidget {
 
     Widget loginButton = RoundedButton(
       text: "Log in",
-      press: () => pushPage(context, LoginRoute()),
+      press: () => pushPage(context, const LoginRoute()),
     );
 
     Widget signUpButton = RoundedButton(
       text: "Sign Up",
-      press: () => pushPage(context, SignUpRoute()),
+      press: () => pushPage(context, const SignUpRoute()),
       color: kPrimaryLightColor,
       textColor: CupertinoColors.black,
     );
