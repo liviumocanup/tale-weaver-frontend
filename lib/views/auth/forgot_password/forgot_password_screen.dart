@@ -1,8 +1,7 @@
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:tale_weaver/shared/auth/navigation_bar.dart';
 import 'package:tale_weaver/views/auth/forgot_password/components/forgot_password_form.dart';
-
-import '../../../shared/auth/title_section.dart';
 
 @RoutePage(name: 'ForgotPasswordRoute')
 class ForgotPasswordScreen extends StatelessWidget {
@@ -32,10 +31,7 @@ class ForgotPasswordScreen extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
 
     return CupertinoPageScaffold(
-      navigationBar: CupertinoNavigationBar(
-        middle: titleSection(),
-        backgroundColor: CupertinoColors.white,
-      ),
+      navigationBar: TopNavigationBar(),
       child: ListView(
         children: [
           Column(

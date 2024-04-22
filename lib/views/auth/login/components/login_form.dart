@@ -62,9 +62,7 @@ class _LoginFormState extends State<LoginForm> {
   }
 
   void pushPage(BuildContext context) {
-    context.router.replaceAll([
-      const HomeRoute()
-    ]);
+    context.router.replaceAll([const LandingRoute()]);
   }
 
   @override

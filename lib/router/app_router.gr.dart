@@ -14,7 +14,7 @@ import 'package:tale_weaver/views/auth/forgot_password/forgot_password_screen.da
 import 'package:tale_weaver/views/auth/login/login_screen.dart' as _i3;
 import 'package:tale_weaver/views/auth/sign_up/sign_up_screen.dart' as _i4;
 import 'package:tale_weaver/views/auth/welcome/welcome_screen.dart' as _i5;
-import 'package:tale_weaver/views/home/home_screen.dart' as _i2;
+import 'package:tale_weaver/views/landing/landing_screen.dart' as _i2;
 
 abstract class $AppRouter extends _i6.RootStackRouter {
   $AppRouter({super.navigatorKey});
@@ -27,10 +27,10 @@ abstract class $AppRouter extends _i6.RootStackRouter {
         child: const _i1.ForgotPasswordScreen(),
       );
     },
-    HomeRoute.name: (routeData) {
+    LandingRoute.name: (routeData) {
       return _i6.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i2.HomeScreen(),
+        child: const _i2.LandingScreen(),
       );
     },
     LoginRoute.name: (routeData) {
@@ -69,15 +69,15 @@ class ForgotPasswordRoute extends _i6.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i2.HomeScreen]
-class HomeRoute extends _i6.PageRouteInfo<void> {
-  const HomeRoute({List<_i6.PageRouteInfo>? children})
+/// [_i2.LandingScreen]
+class LandingRoute extends _i6.PageRouteInfo<void> {
+  const LandingRoute({List<_i6.PageRouteInfo>? children})
       : super(
-          HomeRoute.name,
+          LandingRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'HomeRoute';
+  static const String name = 'LandingRoute';
 
   static const _i6.PageInfo<void> page = _i6.PageInfo<void>(name);
 }

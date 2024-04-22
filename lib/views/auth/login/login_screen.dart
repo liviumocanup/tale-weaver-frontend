@@ -1,11 +1,11 @@
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:tale_weaver/router/app_router.gr.dart';
+import 'package:tale_weaver/shared/auth/navigation_bar.dart';
 import 'package:tale_weaver/shared/auth/oauth/already_have_account.dart';
 import 'package:tale_weaver/shared/auth/oauth/continue_with_section.dart';
 import 'package:tale_weaver/shared/auth/oauth/divider_section.dart';
 import 'package:tale_weaver/views/auth/login/components/login_form.dart';
-import 'package:tale_weaver/shared/auth/title_section.dart';
 
 @RoutePage(name: 'LoginRoute')
 class LoginScreen extends StatelessWidget {
@@ -16,10 +16,7 @@ class LoginScreen extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
 
     return CupertinoPageScaffold(
-      navigationBar: CupertinoNavigationBar(
-        middle: titleSection(),
-        backgroundColor: CupertinoColors.white,
-      ),
+      navigationBar: TopNavigationBar(),
       child: ListView(
         children: [
           Column(

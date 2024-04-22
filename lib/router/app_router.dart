@@ -24,7 +24,7 @@ class AppRouter extends $AppRouter {
           page: ForgotPasswordRoute.page,
         ),
         AutoRoute(
-          page: HomeRoute.page,
+          page: LandingRoute.page,
         )
       ];
 }

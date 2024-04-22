@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:tale_weaver/constants.dart';
 
-Widget continueWith(String assetPath, Size size, Function onTap) => GestureDetector(
+Widget continueWith(String assetPath, Size size, Function onTap) =>
+    GestureDetector(
       onTap: () => onTap(),
       child: Container(
           padding: const EdgeInsets.all(10),
