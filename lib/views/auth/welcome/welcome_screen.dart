@@ -19,46 +19,41 @@ class WelcomeScreen extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
 
     Widget welcomeTextSection = const Text(
-      'Welcome to,',
+      welcomeString,
       style: TextStyle(
         fontWeight: FontWeight.bold,
         fontSize: 20,
+        color: cBlackColor,
       ),
     );
 
     Widget loginButton = RoundedButton(
-      text: "Log in",
-      press: () => pushPage(context, LoginRoute()),
+      text: logInString,
+      press: () => pushPage(context, const LoginRoute()),
     );
 
     Widget signUpButton = RoundedButton(
-      text: "Sign Up",
-      press: () => pushPage(context, SignUpRoute()),
-      color: kPrimaryLightColor,
-      textColor: CupertinoColors.black,
+      text: signUpString,
+      press: () => pushPage(context, const SignUpRoute()),
+      color: cPrimaryLightColor,
+      textColor: cBlackColor,
     );
 
     return CupertinoPageScaffold(
       child: Background(
-        child: Container(
-          padding: EdgeInsets.only(top: size.height * 0.08),
-          child: ListView(
-            children: [
-              Column(
-                children: [
-                  welcomeTextSection,
-                  const Padding(padding: EdgeInsets.only(top: 10)),
-                  titleSection(),
-                  Image.asset(
-                    'assets/images/dandelion-lute.png',
-                    height: size.height * 0.3,
-                  ),
-                  loginButton,
-                  signUpButton,
-                ],
-              ),
-            ],
-          ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            welcomeTextSection,
+            const Padding(padding: EdgeInsets.only(top: 10)),
+            titleSection(),
+            Image.asset(
+              'assets/images/dandelion-lute.png',
+              height: size.height * 0.3,
+            ),
+            loginButton,
+            signUpButton,
+          ],
         ),
       ),
     );

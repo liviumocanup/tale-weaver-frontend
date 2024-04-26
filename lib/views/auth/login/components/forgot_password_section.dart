@@ -12,9 +12,9 @@ Widget forgotPasswordSection(BuildContext context) => Padding(
       child: CupertinoButton(
         onPressed: () => pushPage(context),
         child: const Text(
-          'Forgot your password?',
+          forgotPasswordString,
           style: TextStyle(
-            color: kPrimaryColor,
+            color: cPrimaryColor,
             decoration: TextDecoration.underline,
           ),
         ),

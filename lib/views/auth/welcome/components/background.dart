@@ -32,13 +32,6 @@ class Background extends StatelessWidget {
               'assets/images/welcome_bottom.png',
             ),
           ),
-          // Positioned(
-          //   bottom: 0,
-          //   right: 0,
-          //   child: Image.asset(
-          //     'assets/images/dandelion-book.png',
-          //   ),
-          // ),
           child,
         ],
       ),

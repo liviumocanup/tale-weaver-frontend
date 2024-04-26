@@ -1,14 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:tale_weaver/constants.dart';
 
-Widget continueWith(String assetPath, Size size, Function onTap) => GestureDetector(
+Widget continueWith(String assetPath, Size size, Function onTap) =>
+    GestureDetector(
       onTap: () => onTap(),
       child: Container(
           padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(
             border: Border.all(
               width: 2,
-              color: kPrimaryLightColor,
+              color: cPrimaryLightColor,
             ),
             shape: BoxShape.circle,
           ),

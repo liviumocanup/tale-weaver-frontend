@@ -1,18 +1,19 @@
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:tale_weaver/constants.dart';
+import 'package:tale_weaver/shared/auth/navigation_bar.dart';
 import 'package:tale_weaver/views/auth/forgot_password/components/forgot_password_form.dart';
-
-import '../../../shared/auth/title_section.dart';
 
 @RoutePage(name: 'ForgotPasswordRoute')
 class ForgotPasswordScreen extends StatelessWidget {
   const ForgotPasswordScreen({super.key});
 
   Widget textHeaderSection() => const Text(
-        'Trouble logging in?',
+        forgotPasswordHeaderString,
         style: TextStyle(
           fontWeight: FontWeight.bold,
           fontSize: 25,
+          color: cBlackColor,
         ),
       );
 
@@ -20,9 +21,10 @@ class ForgotPasswordScreen extends StatelessWidget {
         margin:
             EdgeInsets.only(left: size.width * 0.1, right: size.width * 0.1),
         child: const Text(
-          "Enter your email or username and we'll send you a link to get back into your account.",
+          forgotPasswordDescriptionString,
           style: TextStyle(
             fontSize: 20,
+            color: cBlackColor,
           ),
         ),
       );
@@ -32,10 +34,7 @@ class ForgotPasswordScreen extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
 
     return CupertinoPageScaffold(
-      navigationBar: CupertinoNavigationBar(
-        middle: titleSection(),
-        backgroundColor: CupertinoColors.white,
-      ),
+      navigationBar: TopNavigationBar(),
       child: ListView(
         children: [
           Column(

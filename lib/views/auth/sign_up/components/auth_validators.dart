@@ -5,19 +5,19 @@ import 'package:tale_weaver/constants.dart';
 
 String? Function(String?) emailValidator = FormBuilderValidators.compose([
   FormBuilderValidators.required(),
-  FormBuilderValidators.email(errorText: "Email is not valid."),
+  FormBuilderValidators.email(),
+  //TODO: make backend request to check if taken
 ]);
 
 String? Function(String?) passwordValidator = FormBuilderValidators.compose([
   FormBuilderValidators.required(),
-  FormBuilderValidators.minLength(8,
-      errorText: "Password should be at least 8 characters."),
+  FormBuilderValidators.minLength(8),
   (value) {
     if (!RegExp(r'(?=.*[A-Z])').hasMatch(value ?? '')) {
-      return "Must have at least one uppercase letter.";
+      return noUppercasePasswordError;
     }
     if (!RegExp(r'(?=.*\d)').hasMatch(value ?? '')) {
-      return "Should contain at least one number.";
+      return noNumberPasswordError;
     }
     return null;
   }
@@ -29,7 +29,7 @@ String? Function(String?) repeatPasswordValidator(
     FormBuilderValidators.required(),
     (value) {
       if (value != formKey.currentState?.fields[passwordString]?.value) {
-        return "Passwords do not match.";
+        return notMatchingPasswordError;
       }
       return null;
     }
@@ -39,7 +39,7 @@ String? Function(String?) repeatPasswordValidator(
 String? Function(String?) usernameValidator = FormBuilderValidators.compose([
   FormBuilderValidators.required(),
   (value) {
-    // make backend request to check if taken
+    //TODO: make backend request to check if taken
     return null;
   }
 ]);
