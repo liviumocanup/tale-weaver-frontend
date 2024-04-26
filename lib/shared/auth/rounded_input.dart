@@ -18,7 +18,7 @@ class RoundedInput extends StatefulWidget {
     required this.text,
     this.validator,
     this.focusNode,
-    this.iconColor = kPrimaryColor,
+    this.iconColor = cPrimaryColor,
     this.obscureText = false,
   });
 

@@ -67,6 +67,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
   void _onFocusChange(FocusNode node, String fieldName) {
     if (!node.hasFocus) {
       _formKey.currentState?.fields[fieldName]?.validate();
+      node.unfocus();
     }
   }
 
@@ -111,14 +112,14 @@ class _RegistrationFormState extends State<RegistrationForm> {
         var repeatPassword =
             _formKey.currentState?.fields[repeatPassString]?.value;
 
-        // send request to backend to check existance
+        //TODO: send request to backend to check existence
       }
     }
 
     Widget signUpButton = Padding(
         padding: const EdgeInsets.only(bottom: 15, top: 15),
         child: RoundedButton(
-            color: kPrimaryColor, text: 'Sign Up', press: handleSignUp));
+            color: cPrimaryColor, text: signUpString, press: handleSignUp));
 
     return FormBuilder(
       key: _formKey,

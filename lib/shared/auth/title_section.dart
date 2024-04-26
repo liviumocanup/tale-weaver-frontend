@@ -5,7 +5,7 @@ Widget titleSection() => const Text(
       title,
       style: TextStyle(
         fontWeight: FontWeight.bold,
-        color: kPrimaryColor,
+        color: cPrimaryColor,
         fontSize: 30,
       ),
     );

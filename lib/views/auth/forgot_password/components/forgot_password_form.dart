@@ -47,6 +47,7 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
   void _onFocusChange(FocusNode node, String fieldName) {
     if (!node.hasFocus) {
       _formKey.currentState?.fields[fieldName]?.validate();
+      node.unfocus();
     }
   }
 
@@ -55,10 +56,11 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
     Widget resetButton = Padding(
         padding: const EdgeInsets.only(top: 15),
         child: RoundedButton(
-            color: kPrimaryColor,
-            text: 'Reset',
+            color: cPrimaryColor,
+            text: resetString,
             press: () {
               _formKey.currentState?.validate();
+              // TODO: Implement reset password functionality
             }));
 
     return FormBuilder(
@@ -71,8 +73,8 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
               iconData: CupertinoIcons.mail,
               text: emailString,
               validator: FormBuilderValidators.compose([
-                FormBuilderValidators.required(
-                    errorText: '$emailString is required.')
+                FormBuilderValidators.required(),
+                FormBuilderValidators.email(),
               ]),
               focusNode: emailFocusNode,
             ),

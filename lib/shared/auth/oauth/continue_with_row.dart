@@ -9,7 +9,7 @@ Widget continueWith(String assetPath, Size size, Function onTap) =>
           decoration: BoxDecoration(
             border: Border.all(
               width: 2,
-              color: kPrimaryLightColor,
+              color: cPrimaryLightColor,
             ),
             shape: BoxShape.circle,
           ),

@@ -21,23 +21,23 @@ class AlreadyHaveAnAccount extends StatelessWidget {
     String text, action;
 
     if (isAnotherAccount) {
-      text = "Already have an account?";
-      action = "Log In.";
+      text = alreadyHaveAccountString;
+      action = '$logInString.';
     } else {
-      text = "Don't have an account yet?";
-      action = "Sign Up.";
+      text = haveNoAccountString;
+      action = '$signUpString.';
     }
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(text),
+        Text(text, style: const TextStyle(color: cBlackColor)),
         CupertinoButton(
           onPressed: () => pushPage(context),
           child: Text(
             action,
             style: const TextStyle(
-              color: kPrimaryColor,
+              color: cPrimaryColor,
               decoration: TextDecoration.underline,
             ),
           ),

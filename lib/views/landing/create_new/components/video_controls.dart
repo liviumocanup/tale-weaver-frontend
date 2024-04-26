@@ -1,7 +1,6 @@
 import 'dart:async';
-
-import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:tale_weaver/constants.dart';
 import 'package:video_player/video_player.dart';
 
 class VideoControls extends StatefulWidget {
@@ -38,56 +37,107 @@ class _VideoControlsState extends State<VideoControls> {
     final position = widget.controller.value.position;
     final duration = widget.controller.value.duration;
 
-    return Container(
-      color: Colors.black26,
-      child: Column(
+    Future<void> pause() => widget.controller.pause();
+    Future<void> play() => widget.controller.play();
+
+    Widget rewindBtn = CupertinoButton(
+      child: const Icon(
+        size: 30.0,
+        color: cAlwaysWhiteColor,
+        CupertinoIcons.gobackward_10,
+      ),
+      onPressed: () =>
+          widget.controller.seekTo(position - const Duration(seconds: 10)),
+    );
+
+    Widget playPauseBtn = CupertinoButton(
+      child: Icon(
+        size: 45.0,
+        color: cAlwaysWhiteColor,
+        widget.controller.value.isPlaying
+            ? CupertinoIcons.pause_fill
+            : CupertinoIcons.play_fill,
+      ),
+      onPressed: () {
+        setState(() {
+          widget.controller.value.isPlaying ? pause() : play();
+        });
+      },
+    );
+
+    Widget forwardBtn = CupertinoButton(
+        child: const Icon(
+          size: 30.0,
+          color: cAlwaysWhiteColor,
+          CupertinoIcons.goforward_10,
+        ),
+        onPressed: () =>
+            widget.controller.seekTo(position + const Duration(seconds: 10)));
+
+    Widget fullscreenBtn = CupertinoButton(
+      padding: EdgeInsets.zero,
+      onPressed: widget.onToggleFullscreen,
+      child: Icon(
+          color: cAlwaysWhiteColor,
+          widget.isFullscreen
+              ? CupertinoIcons.fullscreen_exit
+              : CupertinoIcons.fullscreen),
+    );
+
+    Widget progressText = RichText(
+      text: TextSpan(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          TextSpan(
+            text: formatDuration(position),
+            style: const TextStyle(
+                color: cAlwaysWhiteColor), // First duration in white
+          ),
+          TextSpan(
+            text: ' / ${formatDuration(duration)}',
+            style:
+                const TextStyle(color: cGrayColor), // Style for the separator
+          ),
+        ],
+      ),
+    );
+
+    return Positioned.fill(
+      child: Stack(
+        children: [
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              IconButton(
-                icon: const Icon(Icons.replay_10),
-                onPressed: () => widget.controller.seekTo(
-                  position - const Duration(seconds: 10),
-                ),
-              ),
-              IconButton(
-                icon: Icon(
-                  widget.controller.value.isPlaying ? Icons.pause : Icons.play_arrow,
-                ),
-                onPressed: () {
-                  setState(() {
-                    if (widget.controller.value.isPlaying) {
-                      widget.controller.pause();
-                    } else {
-                      widget.controller.play();
-                    }
-                  });
-                },
-              ),
-              IconButton(
-                icon: const Icon(Icons.forward_10),
-                onPressed: () => widget.controller.seekTo(
-                  position + const Duration(seconds: 10),
-                ),
-              ),
-              Expanded(
-                child: VideoProgressIndicator(
-                  widget.controller,
-                  allowScrubbing: true,
-                ),
-              ),
-              IconButton(
-                icon: Icon(widget.isFullscreen ? Icons.fullscreen_exit : Icons.fullscreen),
-                onPressed: widget.onToggleFullscreen,
-              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(right: 30.0),
+                    child: rewindBtn,
+                  ),
+                  playPauseBtn,
+                  Padding(
+                    padding: const EdgeInsets.only(left: 30.0),
+                    child: forwardBtn,
+                  ),
+                ],
+              )
             ],
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0),
-            child: Text(
-              "${formatDuration(position)} / ${formatDuration(duration)}",
-              style: const TextStyle(color: Colors.white),
+            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                VideoProgressIndicator(widget.controller, allowScrubbing: true),
+                Row(
+                  // crossAxisAlignment: CrossAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    progressText,
+                    fullscreenBtn,
+                  ],
+                ),
+              ],
             ),
           ),
         ],
@@ -102,10 +152,14 @@ class _VideoControlsState extends State<VideoControls> {
   }
 
   String formatDuration(Duration duration) {
-    String twoDigits(int n) => n.toString().padLeft(2, '0');
-    final hours = twoDigits(duration.inHours);
-    final minutes = twoDigits(duration.inMinutes.remainder(60));
-    final seconds = twoDigits(duration.inSeconds.remainder(60));
-    return "$hours:$minutes:$seconds";
+    final hours = duration.inHours;
+    final minutes = duration.inMinutes.remainder(60);
+    final seconds = duration.inSeconds.remainder(60).toString().padLeft(2, '0');
+
+    if (duration.inHours == 0) {
+      return "$minutes:$seconds";
+    } else {
+      return "$hours:$minutes:$seconds";
+    }
   }
 }

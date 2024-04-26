@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:tale_weaver/constants.dart';
 import 'package:tale_weaver/shared/auth/title_section.dart';
 import 'components/one_card.dart';
 import 'components/welcome_back.dart';
@@ -13,7 +14,7 @@ class HomeTabPage extends StatelessWidget {
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
         middle: titleSection(),
-        backgroundColor: CupertinoColors.white,
+        backgroundColor: cWhiteColor,
       ),
       child: Padding(
         padding: EdgeInsets.only(
@@ -28,18 +29,20 @@ class HomeTabPage extends StatelessWidget {
                 welcomeBackSection(size),
                 const SizedBox(height: 30),
                 const OneCard(
-                    titleText: "Story of the Day",
-                    cardTitleText: "Story Title"),
+                    titleText: storyOfTheDay,
+                    cardTitleText: placeholderStoryTitleString),
                 const SizedBox(height: 30),
                 const OneCard(
-                    titleText: "My Library", cardTitleText: "Card Title"),
+                    titleText: myLibrary,
+                    cardTitleText: placeholderCardTitleString),
                 const SizedBox(height: 30),
                 const OneCard(
-                    titleText: "Subscription Summary",
-                    cardTitleText: "Card Title"),
+                    titleText: subscriptionSummary,
+                    cardTitleText: placeholderCardTitleString),
                 const SizedBox(height: 30),
                 const OneCard(
-                    titleText: "Explore More", cardTitleText: "Story Title")
+                    titleText: exploreMore,
+                    cardTitleText: placeholderStoryTitleString)
               ],
             ),
           ],

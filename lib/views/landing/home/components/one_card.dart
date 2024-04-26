@@ -1,7 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'dart:ui' as ui;
-
-import 'package:flutter/material.dart'; // Import for the blur effect
+import 'package:tale_weaver/constants.dart';
 
 class OneCard extends StatelessWidget {
   final String titleText;
@@ -10,12 +8,13 @@ class OneCard extends StatelessWidget {
   const OneCard({
     super.key,
     required this.titleText,
-    this.cardTitleText = "Test Title",
+    required this.cardTitleText,
   });
 
   @override
   Widget build(BuildContext context) {
-    Widget titleSection = Text(titleText);
+    Widget titleSection =
+        Text(titleText, style: const TextStyle(color: cBlackColor));
 
     Widget cardSection = Container(
       height: 150,
@@ -44,11 +43,8 @@ class OneCard extends StatelessWidget {
             child: ClipRRect(
               borderRadius:
                   const BorderRadius.vertical(bottom: Radius.circular(20.0)),
-              child: BackdropFilter(
-                filter: ui.ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
-                child: Container(
-                  color: Colors.black.withOpacity(0.2),
-                ),
+              child: Container(
+                color: cBlackColor.withOpacity(0.2),
               ),
             ),
           ),
@@ -60,7 +56,7 @@ class OneCard extends StatelessWidget {
             child: Text(
               cardTitleText,
               style: const TextStyle(
-                color: Colors.white,
+                color: cWhiteColor,
                 fontSize: 16,
               ),
             ),

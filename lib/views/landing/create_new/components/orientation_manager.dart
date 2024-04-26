@@ -7,7 +7,8 @@ class OrientationManager {
       DeviceOrientation.landscapeLeft,
     ]);
 
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky,
+        overlays: SystemUiOverlay.values);
   }
 
   void enablePortrait() {
@@ -25,6 +26,7 @@ class OrientationManager {
       DeviceOrientation.landscapeLeft,
     ]);
 
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+        overlays: SystemUiOverlay.values);
   }
 }

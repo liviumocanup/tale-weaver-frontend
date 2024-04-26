@@ -58,6 +58,7 @@ class _LoginFormState extends State<LoginForm> {
   void _onFocusChange(FocusNode node, String fieldName) {
     if (!node.hasFocus) {
       _formKey.currentState?.fields[fieldName]?.validate();
+      node.unfocus();
     }
   }
 
@@ -68,14 +69,34 @@ class _LoginFormState extends State<LoginForm> {
   @override
   Widget build(BuildContext context) {
     Widget loginButton = Padding(
-        padding: const EdgeInsets.only(bottom: 15),
-        child: RoundedButton(
-            color: kPrimaryColor,
-            text: 'Log in',
-            press: () {
-              // _formKey.currentState?.validate();
-              pushPage(context);
-            }));
+      padding: const EdgeInsets.only(bottom: 15),
+      child: RoundedButton(
+          color: cPrimaryColor,
+          text: logInString,
+          press: () {
+            // if (_formKey.currentState!.validate()) {
+            //TODO: make backend request to see if credentials are okay
+            pushPage(context);
+            // }
+          }),
+    );
+
+    Widget emailUsernameInput = RoundedInput(
+      iconData: CupertinoIcons.person,
+      text: emailUsernameString,
+      validator:
+          FormBuilderValidators.compose([FormBuilderValidators.required()]),
+      focusNode: emailUsernameFocusNode,
+    );
+
+    Widget passwordInput = RoundedInput(
+      obscureText: true,
+      iconData: CupertinoIcons.lock,
+      text: passwordString,
+      validator:
+          FormBuilderValidators.compose([FormBuilderValidators.required()]),
+      focusNode: passwordFocusNode,
+    );
 
     return FormBuilder(
       key: _formKey,
@@ -83,25 +104,8 @@ class _LoginFormState extends State<LoginForm> {
         width: widget.size.width * 0.8,
         child: Column(
           children: [
-            RoundedInput(
-              iconData: CupertinoIcons.person,
-              text: emailUsernameString,
-              validator: FormBuilderValidators.compose([
-                FormBuilderValidators.required(
-                    errorText: '$emailUsernameString is required.')
-              ]),
-              focusNode: emailUsernameFocusNode,
-            ),
-            RoundedInput(
-              obscureText: true,
-              iconData: CupertinoIcons.lock,
-              text: passwordString,
-              validator: FormBuilderValidators.compose([
-                FormBuilderValidators.required(
-                    errorText: '$passwordString is required.')
-              ]),
-              focusNode: passwordFocusNode,
-            ),
+            emailUsernameInput,
+            passwordInput,
             Align(
               alignment: Alignment.centerRight,
               child: forgotPasswordSection(context),
