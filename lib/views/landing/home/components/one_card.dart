@@ -2,72 +2,64 @@ import 'package:flutter/cupertino.dart';
 import 'package:tale_weaver/constants.dart';
 
 class OneCard extends StatelessWidget {
-  final String titleText;
-  final String cardTitleText;
+  final String imageAsset;
+  final double blurCoverage;
+  final double cardHeight;
+  final double? cardWidth;
+  final double cardBorderRadius;
+  final double blurOpacity;
+  final Widget storyCardDescription;
 
   const OneCard({
     super.key,
-    required this.titleText,
-    required this.cardTitleText,
+    required this.imageAsset,
+    required this.blurCoverage,
+    required this.cardHeight,
+    required this.cardWidth,
+    required this.cardBorderRadius,
+    required this.storyCardDescription,
+    this.blurOpacity = 0.3,
   });
 
   @override
   Widget build(BuildContext context) {
-    Widget titleSection =
-        Text(titleText, style: const TextStyle(color: cBlackColor));
-
-    Widget cardSection = Container(
-      height: 150,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20.0),
-      ),
-      child: Stack(
-        children: [
-          // Image
-          Positioned.fill(
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(20.0),
-              child: Image.asset(
-                "assets/images/cottage.jpg",
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-          // Blur effect
-          Positioned(
-            left: 0,
-            right: 0,
-            bottom: 0,
-            height: 150 * 0.3,
-            // 30% of the image height
-            child: ClipRRect(
-              borderRadius:
-                  const BorderRadius.vertical(bottom: Radius.circular(20.0)),
-              child: Container(
-                color: cBlackColor.withOpacity(0.2),
-              ),
-            ),
-          ),
-          // Text
-          Positioned(
-            left: 10,
-            right: 10,
-            bottom: 150 * 0.15, // Center in the blurred area
-            child: Text(
-              cardTitleText,
-              style: const TextStyle(
-                color: cWhiteColor,
-                fontSize: 16,
-              ),
-            ),
-          ),
-        ],
+    Widget cardImage = Positioned.fill(
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(cardBorderRadius),
+        child: Image.asset(
+          imageAsset,
+          fit: BoxFit.cover,
+        ),
       ),
     );
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [titleSection, const SizedBox(height: 10), cardSection],
+    Widget cardBlurredSection = Positioned(
+      left: 0,
+      right: 0,
+      bottom: 0,
+      height: cardHeight * blurCoverage,
+      child: ClipRRect(
+        borderRadius:
+            BorderRadius.vertical(bottom: Radius.circular(cardBorderRadius)),
+        child: Container(
+          color: cBlackColor.withOpacity(blurOpacity),
+          child: storyCardDescription,
+        ),
+      ),
+    );
+
+    return Container(
+      height: cardHeight,
+      width: cardWidth,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(cardBorderRadius),
+      ),
+      child: Stack(
+        children: [
+          cardImage,
+          cardBlurredSection,
+        ],
+      ),
     );
   }
 }
