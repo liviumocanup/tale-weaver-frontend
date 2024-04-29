@@ -5,6 +5,7 @@ import 'package:tale_weaver/constants.dart';
 import 'package:tale_weaver/views/landing/create_new/components/fullscreen_state.dart';
 import 'package:tale_weaver/views/landing/create_new/create_new_tab.dart';
 import 'package:tale_weaver/views/landing/home/home_tab.dart';
+import 'package:tale_weaver/views/landing/tabs/collapsing_app_bar.dart';
 
 class CustomTabScaffold extends StatefulWidget {
   const CustomTabScaffold({Key? key}) : super(key: key);
@@ -32,29 +33,36 @@ class _CustomTabScaffoldState extends State<CustomTabScaffold> {
       Container(),
     ];
 
+    Widget bottomNavigationBar = CupertinoTabBar(
+      backgroundColor: cWhiteColor,
+      items: const <BottomNavigationBarItem>[
+        BottomNavigationBarItem(
+          icon: Icon(CupertinoIcons.home),
+          label: homeString,
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(CupertinoIcons.create),
+          label: createNewString,
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(CupertinoIcons.book),
+          label: libraryString,
+        ),
+      ],
+      currentIndex: _selectedIndex,
+      onTap: _onItemTapped,
+    );
+
     return Scaffold(
-      body: pages[_selectedIndex],
-      bottomNavigationBar: fullscreen.isFullscreen
-          ? null
-          : CupertinoTabBar(
-              backgroundColor: cWhiteColor,
-              items: const <BottomNavigationBarItem>[
-                BottomNavigationBarItem(
-                  icon: Icon(CupertinoIcons.home),
-                  label: homeString,
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(CupertinoIcons.create),
-                  label: createNewString,
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(CupertinoIcons.book),
-                  label: libraryString,
-                ),
-              ],
-              currentIndex: _selectedIndex,
-              onTap: _onItemTapped,
-            ),
+      body: CustomScrollView(
+        slivers: [
+          const CollapsingAppBar(),
+          SliverToBoxAdapter(
+            child: pages[_selectedIndex],
+          )
+        ],
+      ),
+      bottomNavigationBar: fullscreen.isFullscreen ? null : bottomNavigationBar,
     );
   }
 }
