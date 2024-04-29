@@ -6,7 +6,7 @@ Widget divider(Size size) => Expanded(
         margin:
             EdgeInsets.only(left: size.width * 0.1, right: size.width * 0.1),
         child: const Divider(
-          color: cSystemGrayColor,
+          color: cGrayColor,
           height: 36,
         ),
       ),

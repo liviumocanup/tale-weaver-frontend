@@ -7,8 +7,7 @@ const cAlwaysBlackColor = CupertinoColors.black;
 const cWhiteColor = cAlwaysWhiteColor;
 const cBlackColor = cAlwaysBlackColor;
 
-const cSystemGrayColor = CupertinoColors.systemGrey;
-const cGrayColor = CupertinoColors.lightBackgroundGray;
+const cGrayColor = CupertinoColors.systemGrey;
 // const kPrimaryColor = Color.fromRGBO(173, 162, 255, 1);
 // const kPrimaryLightColor = Color.fromRGBO(192, 222, 255, 1);
 
