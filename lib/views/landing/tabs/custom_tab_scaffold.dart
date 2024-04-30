@@ -54,7 +54,9 @@ class _CustomTabScaffoldState extends State<CustomTabScaffold> {
     );
 
     return Scaffold(
-      body: CustomScrollView(
+      body: fullscreen.isFullscreen ?
+      pages[1] :
+      CustomScrollView(
         slivers: [
           const CollapsingAppBar(),
           SliverToBoxAdapter(
