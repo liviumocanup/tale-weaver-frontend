@@ -3,18 +3,20 @@ import 'package:provider/provider.dart';
 import 'package:tale_weaver/constants.dart';
 import 'package:tale_weaver/shared/auth/rounded_button.dart';
 import 'package:tale_weaver/shared/auth/rounded_input.dart';
+import 'package:tale_weaver/views/landing/create_new/components/aws_sign.dart';
 import 'package:video_player/video_player.dart';
 
 import 'components/fullscreen_state.dart';
 import 'components/orientation_manager.dart';
+import 'components/send_request.dart';
 import 'components/video_controls.dart';
 
 class CreateNewStoryTabPage extends StatefulWidget {
-  final String link;
+  final String description;
 
   const CreateNewStoryTabPage({
     super.key,
-    required this.link,
+    required this.description,
   });
 
   @override
@@ -23,6 +25,7 @@ class CreateNewStoryTabPage extends StatefulWidget {
 
 class _CreateNewStoryTabPageState extends State<CreateNewStoryTabPage> {
   late VideoPlayerController _controller;
+  bool _isVideoInitialized = false;
   bool _isControlsVisible = false;
   late OrientationManager _orientationManager;
   double? _startVerticalDragPosition;
@@ -34,18 +37,38 @@ class _CreateNewStoryTabPageState extends State<CreateNewStoryTabPage> {
     _orientationManager = OrientationManager();
   }
 
-  void _initializeVideoPlayer() {
-    _controller = VideoPlayerController.networkUrl(Uri.parse(widget.link))
-      ..initialize().then((_) {
-        _controller.play();
-        setState(() {});
-      });
+  Future<String> _getSignedUrl() async {
+    try {
+      await credentialsAws();
+
+      var psUrl = await generateVideo(widget.description, 200);
+      print(psUrl);
+      return psUrl;
+    } catch (e) {
+      print('Failed to generate presigned URL: $e');
+      return "";
+    }
+  }
+
+  Future<void> _initializeVideoPlayer() async {
+    try {
+      var url = await _getSignedUrl();
+      _controller = VideoPlayerController.networkUrl(Uri.parse(url.toString()))
+        ..initialize().then((_) {
+          _isVideoInitialized = true;
+          _controller.play();
+          setState(() {});
+        });
+    } catch (e) {
+      print('Error initializing video player: $e');
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     var fullscreenState = Provider.of<FullscreenState>(context);
-    bool isVideoInitialized = _controller.value.isInitialized;
+    bool isVideoInitialized =
+        _isVideoInitialized ? _controller.value.isInitialized : false;
     bool isFullscreen = fullscreenState.isFullscreen;
 
     Widget loadingIndicator = const CupertinoActivityIndicator(
@@ -67,32 +90,6 @@ class _CreateNewStoryTabPageState extends State<CreateNewStoryTabPage> {
       fullscreenState.enterFullscreen();
     }
 
-    Widget videoControls = VideoControls(
-      controller: _controller,
-      isFullscreen: isFullscreen,
-      onToggleFullscreen: () =>
-          setState(() {
-            isFullscreen ? exitFullscreen() : enterFullscreen();
-          }),
-    );
-
-    Widget videoPlayer = AspectRatio(
-      aspectRatio: _controller.value.aspectRatio,
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          VideoPlayer(_controller),
-          if (_isControlsVisible) blurBackground,
-          if (_isControlsVisible) videoControls,
-        ],
-      ),
-    );
-
-    Widget roundedVideoPlayer = ClipRRect(
-      borderRadius: BorderRadius.circular(10),
-      child: videoPlayer,
-    );
-
     Widget transcript = Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -108,8 +105,8 @@ class _CreateNewStoryTabPageState extends State<CreateNewStoryTabPage> {
             padding: EdgeInsets.all(10),
             child: Text(
               'Unnerved, Sarah and Jake hurried towards the looming windmill on the edge of town. '
-                  'Its massive blades creaked ominously, a stark contrast to the serenity of the surrounding countryside.'
-                  'They knew they had to reach it before nightfall, ...',
+              'Its massive blades creaked ominously, a stark contrast to the serenity of the surrounding countryside.'
+              'They knew they had to reach it before nightfall, ...',
               style: TextStyle(color: cBlackColor),
             ),
           ),
@@ -147,8 +144,7 @@ class _CreateNewStoryTabPageState extends State<CreateNewStoryTabPage> {
         if (dragStartPosition / screenHeight < 0.1) {
           return;
         }
-        if (details.primaryVelocity != null &&
-            details.primaryVelocity! > 0) {
+        if (details.primaryVelocity != null && details.primaryVelocity! > 0) {
           exitFullscreen();
         }
       }
@@ -170,28 +166,70 @@ class _CreateNewStoryTabPageState extends State<CreateNewStoryTabPage> {
           child: Center(
             child: isVideoInitialized
                 ? isFullscreen
-                ? videoPlayer
-                : Padding(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 25, vertical: 10),
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      roundedVideoPlayer,
-                      const SizedBox(height: 40),
-                      transcript,
-                      const SizedBox(height: 20),
-                      titleInput,
-                      const SizedBox(height: 20),
-                      Row(
-                        mainAxisAlignment:
-                        MainAxisAlignment.spaceEvenly,
-                        children: [
-                          doneBtn,
-                          regenerateBtn,
-                        ],
-                      ),
-                    ]))
+                    ? AspectRatio(
+                        aspectRatio: _controller.value.aspectRatio,
+                        child: Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            VideoPlayer(_controller),
+                            if (_isControlsVisible) blurBackground,
+                            if (_isControlsVisible)
+                              VideoControls(
+                                controller: _controller,
+                                isFullscreen: isFullscreen,
+                                onToggleFullscreen: () => setState(() {
+                                  isFullscreen
+                                      ? exitFullscreen()
+                                      : enterFullscreen();
+                                }),
+                              ),
+                          ],
+                        ),
+                      )
+                    : Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 25, vertical: 10),
+                        child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(10),
+                                child: AspectRatio(
+                                  aspectRatio: _controller.value.aspectRatio,
+                                  child: Stack(
+                                    alignment: Alignment.center,
+                                    children: [
+                                      VideoPlayer(_controller),
+                                      if (_isControlsVisible) blurBackground,
+                                      if (_isControlsVisible)
+                                        VideoControls(
+                                          controller: _controller,
+                                          isFullscreen: isFullscreen,
+                                          onToggleFullscreen: () =>
+                                              setState(() {
+                                            isFullscreen
+                                                ? exitFullscreen()
+                                                : enterFullscreen();
+                                          }),
+                                        ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(height: 40),
+                              transcript,
+                              const SizedBox(height: 20),
+                              titleInput,
+                              const SizedBox(height: 20),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  doneBtn,
+                                  regenerateBtn,
+                                ],
+                              ),
+                            ]))
                 : loadingIndicator,
           ),
         ),
