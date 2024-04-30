@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:tale_weaver/constants.dart';
 
-Widget welcomeBackSection(Size size, {String user = "User"}) => Container(
+Widget welcomeBackSection(Size size, {String user = "Liviu"}) => Container(
       alignment: Alignment.centerLeft,
       padding: const EdgeInsets.symmetric(horizontal: 15),
       child: Text(

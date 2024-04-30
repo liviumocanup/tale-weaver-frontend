@@ -4,10 +4,12 @@ import 'package:tale_weaver/views/landing/tabs/custom_tab_scaffold.dart';
 
 @RoutePage(name: 'LandingRoute')
 class LandingScreen extends StatelessWidget {
-  const LandingScreen({super.key});
+  final String user;
+
+  const LandingScreen({super.key, required this.user});
 
   @override
   Widget build(BuildContext context) {
-    return const CustomTabScaffold();
+    return CustomTabScaffold(user: user);
   }
 }

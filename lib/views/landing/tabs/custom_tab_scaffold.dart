@@ -6,7 +6,9 @@ import 'package:tale_weaver/views/landing/home/home_tab.dart';
 import 'package:tale_weaver/views/landing/tabs/collapsing_app_bar.dart';
 
 class CustomTabScaffold extends StatefulWidget {
-  const CustomTabScaffold({Key? key}) : super(key: key);
+  final String user;
+
+  const CustomTabScaffold({Key? key, required this.user}) : super(key: key);
 
   @override
   State<CustomTabScaffold> createState() => _CustomTabScaffoldState();
@@ -24,7 +26,7 @@ class _CustomTabScaffoldState extends State<CustomTabScaffold> {
   @override
   Widget build(BuildContext context) {
     final List<Widget> pages = [
-      const HomeTabPage(),
+      HomeTabPage(user: widget.user),
       const ContentStudio(),
       //TODO: Fetch signed URL for the s3 video
       Container(),

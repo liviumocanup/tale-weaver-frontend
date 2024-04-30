@@ -41,7 +41,7 @@ class _CreateNewStoryTabPageState extends State<CreateNewStoryTabPage> {
     try {
       await credentialsAws();
 
-      var psUrl = await generateVideo(widget.description, 200);
+      var psUrl = await generateVideo(widget.description, 10);
       print(psUrl);
       return psUrl;
     } catch (e) {

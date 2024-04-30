@@ -62,8 +62,8 @@ class _LoginFormState extends State<LoginForm> {
     }
   }
 
-  void pushPage(BuildContext context) {
-    context.router.replaceAll([const LandingRoute()]);
+  void pushPage(BuildContext context, user) {
+    context.router.replaceAll([LandingRoute(user: user)]);
   }
 
   @override
@@ -74,10 +74,12 @@ class _LoginFormState extends State<LoginForm> {
           color: cPrimaryColor,
           text: logInString,
           press: () {
-            // if (_formKey.currentState!.validate()) {
+            if (_formKey.currentState!.validate()) {
+              var user = _formKey.currentState!.fields[emailUsernameString]!.value;
+              print(user);
             //TODO: make backend request to see if credentials are okay
-            pushPage(context);
-            // }
+            pushPage(context, user);
+            }
           }),
     );
 

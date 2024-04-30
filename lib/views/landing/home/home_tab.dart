@@ -7,7 +7,9 @@ import 'package:tale_weaver/views/landing/home/components/subscription_card.dart
 import 'components/welcome_back.dart';
 
 class HomeTabPage extends StatelessWidget {
-  const HomeTabPage({super.key});
+  final String user;
+
+  const HomeTabPage({super.key, this.user = 'Liviu'});
 
   @override
   Widget build(BuildContext context) {
@@ -129,7 +131,7 @@ class HomeTabPage extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          welcomeBackSection(size),
+          welcomeBackSection(size, user: user),
           // const SizedBox(height: 15),
           storyOfTheDaySection,
           // const SizedBox(height: 25),

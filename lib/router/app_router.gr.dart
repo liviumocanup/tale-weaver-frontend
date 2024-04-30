@@ -49,9 +49,13 @@ abstract class $AppRouter extends _i8.RootStackRouter {
       );
     },
     LandingRoute.name: (routeData) {
+      final args = routeData.argsAs<LandingRouteArgs>();
       return _i8.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i4.LandingScreen(),
+        child: _i4.LandingScreen(
+          key: args.key,
+          user: args.user,
+        ),
       );
     },
     LoginRoute.name: (routeData) {
@@ -143,16 +147,40 @@ class ForgotPasswordRoute extends _i8.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i4.LandingScreen]
-class LandingRoute extends _i8.PageRouteInfo<void> {
-  const LandingRoute({List<_i8.PageRouteInfo>? children})
-      : super(
+class LandingRoute extends _i8.PageRouteInfo<LandingRouteArgs> {
+  LandingRoute({
+    _i9.Key? key,
+    required String user,
+    List<_i8.PageRouteInfo>? children,
+  }) : super(
           LandingRoute.name,
+          args: LandingRouteArgs(
+            key: key,
+            user: user,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'LandingRoute';
 
-  static const _i8.PageInfo<void> page = _i8.PageInfo<void>(name);
+  static const _i8.PageInfo<LandingRouteArgs> page =
+      _i8.PageInfo<LandingRouteArgs>(name);
+}
+
+class LandingRouteArgs {
+  const LandingRouteArgs({
+    this.key,
+    required this.user,
+  });
+
+  final _i9.Key? key;
+
+  final String user;
+
+  @override
+  String toString() {
+    return 'LandingRouteArgs{key: $key, user: $user}';
+  }
 }
 
 /// generated route for
