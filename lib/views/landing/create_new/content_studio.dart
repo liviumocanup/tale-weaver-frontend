@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:tale_weaver/shared/auth/rounded_input.dart';
 import 'package:tale_weaver/views/landing/create_new/components/content_studio_form.dart';
 
 class ContentStudio extends StatelessWidget {

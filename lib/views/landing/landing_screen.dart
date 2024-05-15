@@ -1,3 +1,4 @@
+import 'package:amplify_authenticator/amplify_authenticator.dart';
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:tale_weaver/views/landing/tabs/custom_tab_scaffold.dart';
@@ -10,6 +11,6 @@ class LandingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomTabScaffold(user: user);
+    return AuthenticatedView(child: CustomTabScaffold(user: user));
   }
 }

@@ -10,8 +10,9 @@ import 'package:tale_weaver/views/auth/welcome/components/background.dart';
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
 
-  void pushPage(BuildContext context, PageRouteInfo newPageRoute) {
-    context.router.push(newPageRoute);
+  void pushPage(BuildContext context) {
+    // TODO: Replace with actual data
+    context.router.push(LandingRoute(user: 'TestUser'));
   }
 
   @override
@@ -29,12 +30,12 @@ class WelcomeScreen extends StatelessWidget {
 
     Widget loginButton = RoundedButton(
       text: logInString,
-      press: () => pushPage(context, const LoginRoute()),
+      press: () => pushPage(context),
     );
 
     Widget signUpButton = RoundedButton(
       text: signUpString,
-      press: () => pushPage(context, const SignUpRoute()),
+      press: () => pushPage(context),
       color: cPrimaryLightColor,
       textColor: cBlackColor,
     );

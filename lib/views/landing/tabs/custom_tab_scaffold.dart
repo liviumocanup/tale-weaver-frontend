@@ -8,7 +8,7 @@ import 'package:tale_weaver/views/landing/tabs/collapsing_app_bar.dart';
 class CustomTabScaffold extends StatefulWidget {
   final String user;
 
-  const CustomTabScaffold({Key? key, required this.user}) : super(key: key);
+  const CustomTabScaffold({super.key, required this.user});
 
   @override
   State<CustomTabScaffold> createState() => _CustomTabScaffoldState();

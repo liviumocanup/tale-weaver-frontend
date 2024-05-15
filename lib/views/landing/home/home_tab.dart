@@ -1,3 +1,4 @@
+import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:tale_weaver/constants.dart';
 import 'package:tale_weaver/views/landing/home/components/card_section.dart';
@@ -9,7 +10,19 @@ import 'components/welcome_back.dart';
 class HomeTabPage extends StatelessWidget {
   final String user;
 
-  const HomeTabPage({super.key, this.user = 'Liviu'});
+  // TODO: Replace with actual data
+  const HomeTabPage({super.key, this.user = 'TestUser'});
+
+  Future<void> getDownloadUrl() async {
+    try {
+      final result = await Amplify.Storage.getUrl(
+        path: const StoragePath.fromString('public/example.txt'),
+      ).result;
+      safePrint('url: ${result.url}');
+    } on StorageException catch (e) {
+      safePrint(e.message);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
