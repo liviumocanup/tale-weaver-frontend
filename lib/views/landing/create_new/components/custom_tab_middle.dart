@@ -1,19 +1,27 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:tale_weaver/constants.dart';
+import 'package:tale_weaver/views/landing/create_new/components/fullscreen_state.dart';
 import 'package:tale_weaver/views/landing/create_new/content_studio.dart';
+import 'package:tale_weaver/views/landing/create_new/create_new_tab.dart';
 import 'package:tale_weaver/views/landing/home/home_tab.dart';
 import 'package:tale_weaver/views/landing/tabs/collapsing_app_bar.dart';
 
-class CustomTabScaffold extends StatefulWidget {
-  const CustomTabScaffold({Key? key}) : super(key: key);
+class CustomTabMiddleScaffold extends StatefulWidget {
+  final String description;
+
+  const CustomTabMiddleScaffold({
+    super.key,
+    required this.description,
+  });
 
   @override
-  State<CustomTabScaffold> createState() => _CustomTabScaffoldState();
+  State<CustomTabMiddleScaffold> createState() => _CustomTabMiddleScaffoldState();
 }
 
-class _CustomTabScaffoldState extends State<CustomTabScaffold> {
-  int _selectedIndex = 0;
+class _CustomTabMiddleScaffoldState extends State<CustomTabMiddleScaffold> {
+  int _selectedIndex = 2;
 
   void _onItemTapped(int index) {
     setState(() {
@@ -23,11 +31,11 @@ class _CustomTabScaffoldState extends State<CustomTabScaffold> {
 
   @override
   Widget build(BuildContext context) {
+    final fullscreen = Provider.of<FullscreenState>(context);
     final List<Widget> pages = [
       const HomeTabPage(),
       const ContentStudio(),
-      //TODO: Fetch signed URL for the s3 video
-      Container(),
+      CreateNewStoryTabPage(description: widget.description),
     ];
 
     Widget bottomNavigationBar = CupertinoTabBar(
@@ -51,7 +59,9 @@ class _CustomTabScaffoldState extends State<CustomTabScaffold> {
     );
 
     return Scaffold(
-      body: CustomScrollView(
+      body: fullscreen.isFullscreen ?
+      pages[2] :
+      CustomScrollView(
         slivers: [
           const CollapsingAppBar(),
           SliverToBoxAdapter(
@@ -59,7 +69,7 @@ class _CustomTabScaffoldState extends State<CustomTabScaffold> {
           )
         ],
       ),
-      bottomNavigationBar: bottomNavigationBar,
+      bottomNavigationBar: fullscreen.isFullscreen ? null : bottomNavigationBar,
     );
   }
 }

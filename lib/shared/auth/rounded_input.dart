@@ -5,21 +5,23 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:tale_weaver/constants.dart';
 
 class RoundedInput extends StatefulWidget {
-  final IconData iconData;
+  final IconData? iconData;
   final String text;
   final Color iconColor;
   final String? Function(String?)? validator;
   final FocusNode? focusNode;
   final bool obscureText;
+  final double radius;
 
   const RoundedInput({
     super.key,
-    required this.iconData,
+    this.iconData,
     required this.text,
     this.validator,
     this.focusNode,
     this.iconColor = cPrimaryColor,
     this.obscureText = false,
+    this.radius = 15,
   });
 
   @override
@@ -54,9 +56,9 @@ class _RoundedInputState extends State<RoundedInput> {
                 [widget.validator ?? (value) => null]),
             focusNode: widget.focusNode,
             decoration: InputDecoration(
-              icon: Icon(widget.iconData, color: widget.iconColor),
-              border: const OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(15)),
+              icon: widget.iconData != null ? Icon(widget.iconData, color: widget.iconColor) : null,
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(widget.radius)),
               ),
               suffixIcon: widget.obscureText
                   ? CupertinoButton(
