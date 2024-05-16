@@ -31,6 +31,7 @@ const resetString = 'Reset';
 
 // Authentication
 const logInString = 'Log In';
+const logOutString = 'Log Out';
 const signUpString = 'Sign Up';
 const emailString = 'Email';
 const usernameString = 'Username';

@@ -15,7 +15,7 @@ class AppRouter extends $AppRouter {
           path: "/",
         ),
         AutoRoute(
-          page: LandingRoute.page,
+          page: Home.page,
         ),
         AutoRoute(
           page: AccountRoute.page,

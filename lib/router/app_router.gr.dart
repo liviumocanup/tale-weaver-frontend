@@ -10,12 +10,13 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i5;
 import 'package:flutter/cupertino.dart' as _i6;
-import 'package:tale_weaver/views/auth/welcome/welcome_screen.dart' as _i4;
-import 'package:tale_weaver/views/landing/account_management/account_screen.dart'
+import 'package:tale_weaver/features/home_page/screens/home_screen.dart' as _i3;
+import 'package:tale_weaver/features/home_tab/screens/account_screen.dart'
     as _i1;
-import 'package:tale_weaver/views/landing/create_new/create_middleware.dart'
+import 'package:tale_weaver/features/welcome/screens/welcome_screen.dart'
+    as _i4;
+import 'package:tale_weaver/features/create_new/widgets/create_middleware.dart'
     as _i2;
-import 'package:tale_weaver/views/landing/landing_screen.dart' as _i3;
 
 abstract class $AppRouter extends _i5.RootStackRouter {
   $AppRouter({super.navigatorKey});
@@ -38,14 +39,10 @@ abstract class $AppRouter extends _i5.RootStackRouter {
         ),
       );
     },
-    LandingRoute.name: (routeData) {
-      final args = routeData.argsAs<LandingRouteArgs>();
+    Home.name: (routeData) {
       return _i5.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i3.LandingScreen(
-          key: args.key,
-          user: args.user,
-        ),
+        child: const _i3.HomeScreen(),
       );
     },
     WelcomeRoute.name: (routeData) {
@@ -110,41 +107,17 @@ class CreateNewStoryRouteArgs {
 }
 
 /// generated route for
-/// [_i3.LandingScreen]
-class LandingRoute extends _i5.PageRouteInfo<LandingRouteArgs> {
-  LandingRoute({
-    _i6.Key? key,
-    required String user,
-    List<_i5.PageRouteInfo>? children,
-  }) : super(
-          LandingRoute.name,
-          args: LandingRouteArgs(
-            key: key,
-            user: user,
-          ),
+/// [_i3.HomeScreen]
+class Home extends _i5.PageRouteInfo<void> {
+  const Home({List<_i5.PageRouteInfo>? children})
+      : super(
+          Home.name,
           initialChildren: children,
         );
 
-  static const String name = 'LandingRoute';
+  static const String name = 'Home';
 
-  static const _i5.PageInfo<LandingRouteArgs> page =
-      _i5.PageInfo<LandingRouteArgs>(name);
-}
-
-class LandingRouteArgs {
-  const LandingRouteArgs({
-    this.key,
-    required this.user,
-  });
-
-  final _i6.Key? key;
-
-  final String user;
-
-  @override
-  String toString() {
-    return 'LandingRouteArgs{key: $key, user: $user}';
-  }
+  static const _i5.PageInfo<void> page = _i5.PageInfo<void>(name);
 }
 
 /// generated route for
