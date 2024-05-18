@@ -3,6 +3,7 @@ import 'package:tale_weaver/constants.dart';
 import 'package:tale_weaver/features/home_tab/widgets/one_card.dart';
 
 class SmallCard extends StatelessWidget {
+  final bool isAsset;
   final String title;
   final String location;
   final String length;
@@ -22,19 +23,11 @@ class SmallCard extends StatelessWidget {
     required this.width,
     this.borderRadius = 20,
     this.blurCoverage = 0.3,
+    this.isAsset = false,
   });
 
   @override
   Widget build(BuildContext context) {
-    // Widget titleText = Text(
-    //   title,
-    //   style: const TextStyle(
-    //     color: cWhiteColor,
-    //     fontSize: 13,
-    //     fontWeight: FontWeight.bold,
-    //   ),
-    // );
-
     Widget titleText = Expanded(
       child: Padding(
         padding: const EdgeInsets.only(right: 5),
@@ -82,6 +75,7 @@ class SmallCard extends StatelessWidget {
         ));
 
     return OneCard(
+      isAsset: isAsset,
       imageAsset: imageAsset,
       blurCoverage: blurCoverage,
       cardHeight: height,

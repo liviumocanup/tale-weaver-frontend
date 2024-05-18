@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:tale_weaver/constants.dart';
-import 'package:tale_weaver/features/create_new/screens/content_studio.dart';
+import 'package:tale_weaver/features/generate_story/screens/content_studio.dart';
 import 'package:tale_weaver/features/home_tab/screens/home_tab_screen.dart';
 
 class HomeTabScaffold extends StatefulWidget {
@@ -25,7 +25,7 @@ class _HomeTabScaffoldState extends State<HomeTabScaffold> {
     const BottomNavigationBarItem(
         icon: Icon(CupertinoIcons.home), label: homeString),
     const BottomNavigationBarItem(
-        icon: Icon(CupertinoIcons.create), label: createNewString),
+        icon: Icon(CupertinoIcons.create), label: contentStudioString),
     const BottomNavigationBarItem(
         icon: Icon(CupertinoIcons.book), label: libraryString)
   ];

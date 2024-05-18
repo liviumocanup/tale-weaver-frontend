@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:tale_weaver/constants.dart';
 
 class OneCard extends StatelessWidget {
+  final bool isAsset;
   final String imageAsset;
   final double blurCoverage;
   final double cardHeight;
@@ -12,6 +13,7 @@ class OneCard extends StatelessWidget {
 
   const OneCard({
     super.key,
+    required this.isAsset,
     required this.imageAsset,
     required this.blurCoverage,
     required this.cardHeight,
@@ -23,13 +25,20 @@ class OneCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Widget image = isAsset
+        ? Image.asset(
+            imageAsset,
+            fit: BoxFit.cover,
+          )
+        : Image.network(
+            imageAsset,
+            fit: BoxFit.cover,
+          );
+
     Widget cardImage = Positioned.fill(
       child: ClipRRect(
         borderRadius: BorderRadius.circular(cardBorderRadius),
-        child: Image.asset(
-          imageAsset,
-          fit: BoxFit.cover,
-        ),
+        child: image,
       ),
     );
 

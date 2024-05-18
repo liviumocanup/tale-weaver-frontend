@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tale_weaver/constants.dart';
 import 'package:tale_weaver/features/create_new/providers/fullscreen_state.dart';
-import 'package:tale_weaver/features/create_new/screens/content_studio.dart';
+import 'package:tale_weaver/features/generate_story/screens/content_studio.dart';
 import 'package:tale_weaver/features/create_new/screens/create_new_tab.dart';
 import 'package:tale_weaver/features/home_tab/screens/home_tab_screen.dart';
 import 'package:tale_weaver/features/home_tab/widgets/collapsing_app_bar.dart';
@@ -47,7 +47,7 @@ class _CustomTabMiddleScaffoldState extends State<CustomTabMiddleScaffold> {
         ),
         BottomNavigationBarItem(
           icon: Icon(CupertinoIcons.create),
-          label: createNewString,
+          label: contentStudioString,
         ),
         BottomNavigationBarItem(
           icon: Icon(CupertinoIcons.book),

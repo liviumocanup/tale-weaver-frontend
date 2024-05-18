@@ -85,6 +85,7 @@ class StoryOfTheDayCard extends StatelessWidget {
         ));
 
     return OneCard(
+      isAsset: true,
       imageAsset: imageAsset,
       blurCoverage: blurCoverage,
       cardHeight: height,

@@ -1,6 +1,6 @@
 {
-  "authSelections": "userPoolOnly",
-  "resourceName": "taleweaverfrontend9adc6b12",
+  "authSelections": "identityPoolAndUserPool",
+  "resourceName": "taleweaverfrontendcb751bca",
   "serviceType": "imported",
   "region": "eu-central-1",
   "aliasAttributes": [

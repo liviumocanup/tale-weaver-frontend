@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 import 'package:tale_weaver/constants.dart';
 import 'package:tale_weaver/shared/widgets/rounded_button.dart';
-import 'package:tale_weaver/shared/auth/rounded_input.dart';
 import 'package:tale_weaver/features/create_new/domain/repository/aws_sign.dart';
 import 'package:video_player/video_player.dart';
 
@@ -114,9 +113,9 @@ class _CreateNewStoryTabPageState extends State<CreateNewStoryTabPage> {
       ],
     );
 
-    Widget titleInput = const RoundedInput(
-      text: 'Title',
-      radius: 5,
+    Widget titleInput = const CupertinoButton(
+      onPressed: null,
+      child: Text('Title', style: TextStyle(color: cBlackColor)),
     );
 
     Widget doneBtn = RoundedButton(

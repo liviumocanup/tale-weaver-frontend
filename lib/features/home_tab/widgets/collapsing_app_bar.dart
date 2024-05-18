@@ -25,7 +25,7 @@ class CollapsingAppBar extends StatelessWidget {
     );
 
     return SliverAppBar(
-      backgroundColor: cWhiteColor,
+      backgroundColor: CupertinoColors.systemGroupedBackground,
       floating: true,
       snap: true,
       title: const AppTitle(),

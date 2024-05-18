@@ -1,6 +1,6 @@
 {
   "auth": {
-    "taleweaverfrontend9adc6b12": {
+    "taleweaverfrontendcb751bca": {
       "customAuth": false,
       "dependsOn": [],
       "providerPlugin": "awscloudformation",
@@ -9,37 +9,117 @@
     }
   },
   "parameters": {
-    "AMPLIFY_auth_taleweaverfrontend9adc6b12_nativeClientId": {
+    "AMPLIFY_auth_taleweaverfrontendcb751bca_allowUnauthenticatedIdentities": {
       "usedBy": [
         {
           "category": "auth",
-          "resourceName": "taleweaverfrontend9adc6b12"
+          "resourceName": "taleweaverfrontendcb751bca"
         }
       ]
     },
-    "AMPLIFY_auth_taleweaverfrontend9adc6b12_userPoolId": {
+    "AMPLIFY_auth_taleweaverfrontendcb751bca_authRoleArn": {
       "usedBy": [
         {
           "category": "auth",
-          "resourceName": "taleweaverfrontend9adc6b12"
+          "resourceName": "taleweaverfrontendcb751bca"
         }
       ]
     },
-    "AMPLIFY_auth_taleweaverfrontend9adc6b12_userPoolName": {
+    "AMPLIFY_auth_taleweaverfrontendcb751bca_authRoleName": {
       "usedBy": [
         {
           "category": "auth",
-          "resourceName": "taleweaverfrontend9adc6b12"
+          "resourceName": "taleweaverfrontendcb751bca"
         }
       ]
     },
-    "AMPLIFY_auth_taleweaverfrontend9adc6b12_webClientId": {
+    "AMPLIFY_auth_taleweaverfrontendcb751bca_identityPoolId": {
       "usedBy": [
         {
           "category": "auth",
-          "resourceName": "taleweaverfrontend9adc6b12"
+          "resourceName": "taleweaverfrontendcb751bca"
         }
       ]
+    },
+    "AMPLIFY_auth_taleweaverfrontendcb751bca_identityPoolName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "taleweaverfrontendcb751bca"
+        }
+      ]
+    },
+    "AMPLIFY_auth_taleweaverfrontendcb751bca_nativeClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "taleweaverfrontendcb751bca"
+        }
+      ]
+    },
+    "AMPLIFY_auth_taleweaverfrontendcb751bca_unauthRoleArn": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "taleweaverfrontendcb751bca"
+        }
+      ]
+    },
+    "AMPLIFY_auth_taleweaverfrontendcb751bca_unauthRoleName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "taleweaverfrontendcb751bca"
+        }
+      ]
+    },
+    "AMPLIFY_auth_taleweaverfrontendcb751bca_userPoolId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "taleweaverfrontendcb751bca"
+        }
+      ]
+    },
+    "AMPLIFY_auth_taleweaverfrontendcb751bca_userPoolName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "taleweaverfrontendcb751bca"
+        }
+      ]
+    },
+    "AMPLIFY_auth_taleweaverfrontendcb751bca_webClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "taleweaverfrontendcb751bca"
+        }
+      ]
+    },
+    "AMPLIFY_storage_taleweaverfrontend77e7c12d_bucketName": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "taleweaverfrontend77e7c12d"
+        }
+      ]
+    },
+    "AMPLIFY_storage_taleweaverfrontend77e7c12d_region": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "taleweaverfrontend77e7c12d"
+        }
+      ]
+    }
+  },
+  "storage": {
+    "taleweaverfrontend77e7c12d": {
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "S3",
+      "serviceType": "imported"
     }
   }
 }

@@ -15,36 +15,14 @@ const cGrayColor = CupertinoColors.systemGrey;
 const welcomeString = 'Welcome to,';
 const title = 'Tale Weaver';
 
-// Login
-const emailUsernameString = 'Username or email';
-const forgotPasswordString = 'Forgot your password?';
-const orString = 'OR';
-const continueWith = 'Continue with';
-const alreadyHaveAccountString = 'Already have an account?';
-const haveNoAccountString = 'Don\'t have an account yet?';
-
-// Forgot Password
-const forgotPasswordHeaderString = 'Trouble logging in?';
-const forgotPasswordDescriptionString =
-    'Enter your email and we\'ll send you a link to get back into your account.';
-const resetString = 'Reset';
-
-// Authentication
+// Welcome
 const logInString = 'Log In';
 const logOutString = 'Log Out';
 const signUpString = 'Sign Up';
-const emailString = 'Email';
-const usernameString = 'Username';
-const passwordString = 'Password';
-const repeatPassString = 'Repeat your password';
-const noUppercasePasswordError =
-    'Should contain at least one uppercase letter.';
-const noNumberPasswordError = 'Should contain at least one number.';
-const notMatchingPasswordError = 'Passwords do not match.';
 
-// Landing
+// Home
 const homeString = 'Home';
-const createNewString = 'Create New';
+const contentStudioString = 'Content Studio';
 const libraryString = 'Library';
 
 // Home Tab
@@ -53,10 +31,10 @@ const storyOfTheDay = 'Story of the Day';
 const myLibrary = 'My Library';
 const subscriptionSummary = 'Subscription Summary';
 const exploreMore = 'Explore More';
-const placeholderStoryTitleString = 'Story Title';
-const placeholderCardTitleString = 'Card Title';
-const String cLink =
-    "https://cdn.flowplayer.com/a30bd6bc-f98b-47bc-abf5-97633d4faea0/hls/de3f6ca7-2db3-4689-8160-0f574a5996ad/playlist.m3u8";
+// const placeholderStoryTitleString = 'Story Title';
+// const placeholderCardTitleString = 'Card Title';
+// const String cLink =
+//     "https://cdn.flowplayer.com/a30bd6bc-f98b-47bc-abf5-97633d4faea0/hls/de3f6ca7-2db3-4689-8160-0f574a5996ad/playlist.m3u8";
 
 // Story of the Day
 const sotdTitlePh = 'Whispers';
@@ -65,22 +43,6 @@ const sotdDescriptionPh =
     "As the moon casts an eerie glow upon the forest, a group of unsuspecting adventurers seeks shelter from a sudden storm. Oblivious to the cottage's dark history, they enter its creaking doors, only to find themselves ensnared in a web of malevolent forces.";
 const sotdLengthPh = '~ 12 min';
 const sotdImageAssetPh = 'assets/images/cabin-1.jpg';
-
-// My Library
-const story1Title = 'Midnight\'s Descent';
-const story1Location = 'Gas Station';
-const story1Length = '~ 17 min';
-const story1ImageAsset = 'assets/images/gas-station-1.jpg';
-
-const story2Title = 'The Calling';
-const story2Location = 'Cottage';
-const story2Length = '~ 13 min';
-const story2ImageAsset = 'assets/images/cottage-1.jpg';
-
-const story3Title = 'Doom';
-const story3Location = 'Hospital';
-const story3Length = '~ 21 min';
-const story3ImageAsset = 'assets/images/hospital-1.jpg';
 
 // Subscription Summary
 const subscriptionTitlePh = 'Monthly Plan';
@@ -102,3 +64,17 @@ const explore3Title = 'The Shadows of the Fog';
 const explore3Location = 'Misty Mountains';
 const explore3Length = '~18 min';
 const explore3ImageAsset = 'assets/images/mountains-1.jpg';
+
+// Story Feature
+const localhostString = 'http://10.0.2.2:8081';
+
+// Content Studio
+const csDescriptionString = 'Description';
+const csGenerateString = 'Generate';
+const csDescriptionErrorString = 'Please enter a description';
+const csLocationString = 'Location';
+const csStoryDetailsString = 'Story Details';
+const csNarratorSettingsString = 'Narrator Settings';
+const csNarratorString = 'Voice ID';
+const csNarratorErrorString = 'Please enter a voice ID';
+const csSFXString = 'Sound Settings';

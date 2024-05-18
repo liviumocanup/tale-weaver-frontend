@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:tale_weaver/constants.dart';
 import 'package:tale_weaver/features/home_tab/widgets/explore_more/explore_more_section.dart';
 import 'package:tale_weaver/features/home_tab/widgets/library/library_section.dart';
 import 'package:tale_weaver/features/home_tab/widgets/story_of_the_day/story_of_the_day_section.dart';
@@ -45,27 +46,30 @@ class HomeTabPage extends StatelessWidget {
       smallBlurCoverage: smallBlurCoverage,
     );
 
-    return CustomScrollView(
-      slivers: [
-        const CollapsingAppBar(),
-        SliverList(
-          delegate: SliverChildBuilderDelegate((context, index) {
-            switch (index) {
-              case 0:
-                return WelcomeBackGreeting(size: size, userName: user);
-              case 2:
-                return library;
-              case 3:
-                return subscription;
-              case 4:
-                return exploreMore;
-              case 1:
-              default:
-                return storyOfTheDay;
-            }
-          }, childCount: 5),
-        ),
-      ],
+    return CupertinoPageScaffold(
+      backgroundColor: CupertinoColors.systemGroupedBackground,
+      child: CustomScrollView(
+        slivers: [
+          const CollapsingAppBar(),
+          SliverList(
+            delegate: SliverChildBuilderDelegate((context, index) {
+              switch (index) {
+                case 0:
+                  return WelcomeBackGreeting(size: size, userName: user);
+                case 2:
+                  return library;
+                case 3:
+                  return subscription;
+                case 4:
+                  return exploreMore;
+                case 1:
+                default:
+                  return storyOfTheDay;
+              }
+            }, childCount: 5),
+          ),
+        ],
+      ),
     );
   }
 }

@@ -41,6 +41,7 @@ class SubscriptionCard extends StatelessWidget {
     );
 
     return OneCard(
+      isAsset: true,
       imageAsset: imageAsset,
       blurCoverage: blurCoverage,
       blurOpacity: 0,
