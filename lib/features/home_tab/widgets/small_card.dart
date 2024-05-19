@@ -3,6 +3,7 @@ import 'package:tale_weaver/constants.dart';
 import 'package:tale_weaver/features/home_tab/widgets/one_card.dart';
 
 class SmallCard extends StatelessWidget {
+  final String id;
   final bool isAsset;
   final String title;
   final String location;
@@ -15,6 +16,7 @@ class SmallCard extends StatelessWidget {
 
   const SmallCard({
     super.key,
+    required this.id,
     required this.title,
     required this.location,
     required this.length,
@@ -75,6 +77,7 @@ class SmallCard extends StatelessWidget {
         ));
 
     return OneCard(
+      id: id,
       isAsset: isAsset,
       imageAsset: imageAsset,
       blurCoverage: blurCoverage,

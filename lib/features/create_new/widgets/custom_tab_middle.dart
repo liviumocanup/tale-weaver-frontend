@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tale_weaver/constants.dart';
-import 'package:tale_weaver/features/create_new/providers/fullscreen_state.dart';
+import 'package:tale_weaver/features/generate_story/providers/fullscreen_state.dart';
 import 'package:tale_weaver/features/generate_story/screens/content_studio.dart';
 import 'package:tale_weaver/features/create_new/screens/create_new_tab.dart';
 import 'package:tale_weaver/features/home_tab/screens/home_tab_screen.dart';

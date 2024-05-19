@@ -6,8 +6,8 @@ import 'package:tale_weaver/features/create_new/domain/repository/aws_sign.dart'
 import 'package:video_player/video_player.dart';
 
 import '../domain/repository/send_request.dart';
-import '../providers/fullscreen_state.dart';
-import '../widgets/orientation_manager.dart';
+import '../../generate_story/providers/fullscreen_state.dart';
+import '../../generate_story/providers/orientation_manager.dart';
 import '../widgets/video_controls.dart';
 
 class CreateNewStoryTabPage extends StatefulWidget {

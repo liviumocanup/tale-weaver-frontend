@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 
 import 'custom_tab_middle.dart';
-import '../providers/fullscreen_state.dart';
+import '../../generate_story/providers/fullscreen_state.dart';
 
 @RoutePage(name: 'CreateNewStoryRoute')
 class CreateNewMiddle extends StatelessWidget {

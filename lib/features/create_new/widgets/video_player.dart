@@ -4,7 +4,7 @@
 // import 'package:tale_weaver/views/landing/create_new/components/fullscreen_state.dart';
 // import 'package:tale_weaver/views/landing/create_new/components/orientation_manager.dart';
 // import 'package:tale_weaver/views/landing/create_new/components/video_controls.dart';
-// import 'package:video_player/video_player.dart';
+// import 'package:video_player/video_player_screen.dart';
 //
 // class CustomVideoPlayer extends StatefulWidget {
 //   final String link;

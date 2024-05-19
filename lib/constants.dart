@@ -69,6 +69,7 @@ const explore3ImageAsset = 'assets/images/mountains-1.jpg';
 const localhostString = 'http://10.0.2.2:8081';
 
 // Content Studio
+const csTitleString = 'Content Studio';
 const csDescriptionString = 'Description';
 const csGenerateString = 'Generate';
 const csDescriptionErrorString = 'Please enter a description';

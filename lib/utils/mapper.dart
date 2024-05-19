@@ -10,6 +10,7 @@ List<Widget> mapStoryPreviewsToSmallCards(
 ) {
   return storyPreviews.map((story) {
     return SmallCard(
+      id: story.id,
       title: story.title,
       imageAsset: story.thumbnailUrl,
       height: smallCardHeight,
@@ -20,3 +21,5 @@ List<Widget> mapStoryPreviewsToSmallCards(
     );
   }).toList();
 }
+
+

@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tale_weaver/constants.dart';
+import 'package:tale_weaver/features/welcome/widgets/push_page_func.dart';
+import 'package:tale_weaver/router/app_router.gr.dart';
 
 class ContentStudioForm extends StatefulWidget {
   final Size size;
@@ -16,6 +18,7 @@ class ContentStudioForm extends StatefulWidget {
 
 class _ContentStudioFormState extends State<ContentStudioForm> {
   final _formKey = GlobalKey<FormState>();
+  final TextEditingController _descriptionController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -28,8 +31,8 @@ class _ContentStudioFormState extends State<ContentStudioForm> {
           final form = _formKey.currentState!;
 
           if (form.validate()) {
-            // form.save();
-            // context.router.push(StoryDetailRoute(description: form.value[csDescriptionString]));
+            String description = _descriptionController.text;
+            pushPage(context, StudioPlayerRoute(description: description));
           }
         },
       ),
@@ -38,6 +41,7 @@ class _ContentStudioFormState extends State<ContentStudioForm> {
     Widget descriptionRow = CupertinoFormRow(
           prefix: const Text(csDescriptionString),
           child: CupertinoTextFormFieldRow(
+            controller: _descriptionController,
             placeholder: csDescriptionString,
             autovalidateMode: AutovalidateMode.onUserInteraction,
             validator: (value) {

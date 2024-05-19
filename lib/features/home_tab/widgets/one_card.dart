@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:tale_weaver/constants.dart';
+import 'package:tale_weaver/features/welcome/widgets/push_page_func.dart';
+import 'package:tale_weaver/router/app_router.gr.dart';
 
 class OneCard extends StatelessWidget {
+  final String id;
   final bool isAsset;
   final String imageAsset;
   final double blurCoverage;
@@ -13,6 +16,7 @@ class OneCard extends StatelessWidget {
 
   const OneCard({
     super.key,
+    required this.id,
     required this.isAsset,
     required this.imageAsset,
     required this.blurCoverage,
@@ -63,11 +67,16 @@ class OneCard extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(cardBorderRadius),
       ),
-      child: Stack(
-        children: [
-          cardImage,
-          cardBlurredSection,
-        ],
+      child: GestureDetector(
+        onTap: () {
+          pushPage(context, StoryViewRoute(id: id));
+        },
+        child: Stack(
+          children: [
+            cardImage,
+            cardBlurredSection,
+          ],
+        ),
       ),
     );
   }

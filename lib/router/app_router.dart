@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:tale_weaver/features/generate_story/screens/player_screen.dart';
 import 'package:tale_weaver/router/app_router.gr.dart';
 
 @AutoRouterConfig(
@@ -14,14 +15,9 @@ class AppRouter extends $AppRouter {
           page: WelcomeRoute.page,
           path: "/",
         ),
-        AutoRoute(
-          page: Home.page,
-        ),
-        AutoRoute(
-          page: AccountRoute.page,
-        ),
-        AutoRoute(
-          page: CreateNewStoryRoute.page,
-        )
+        AutoRoute(page: Home.page),
+        AutoRoute(page: AccountRoute.page),
+        AutoRoute(page: StudioPlayerRoute.page),
+        AutoRoute(page: StoryViewRoute.page),
       ];
 }
