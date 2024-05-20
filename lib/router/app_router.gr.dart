@@ -8,33 +8,34 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i8;
-import 'package:flutter/cupertino.dart' as _i9;
-import 'package:tale_weaver/views/auth/forgot_password/forgot_password_screen.dart'
-    as _i3;
-import 'package:tale_weaver/views/auth/login/login_screen.dart' as _i5;
-import 'package:tale_weaver/views/auth/sign_up/sign_up_screen.dart' as _i6;
-import 'package:tale_weaver/views/auth/welcome/welcome_screen.dart' as _i7;
-import 'package:tale_weaver/views/landing/account_management/account_screen.dart'
-    as _i1;
-import 'package:tale_weaver/views/landing/create_new/create_middleware.dart'
+import 'package:auto_route/auto_route.dart' as _i7;
+import 'package:flutter/cupertino.dart' as _i8;
+import 'package:tale_weaver/features/create_new/widgets/create_middleware.dart'
     as _i2;
-import 'package:tale_weaver/views/landing/landing_screen.dart' as _i4;
+import 'package:tale_weaver/features/generate_story/screens/studio_player.dart'
+    as _i5;
+import 'package:tale_weaver/features/home_page/screens/home_screen.dart' as _i3;
+import 'package:tale_weaver/features/home_tab/screens/account_screen.dart'
+    as _i1;
+import 'package:tale_weaver/features/view_story/screens/story_view_screen.dart'
+    as _i4;
+import 'package:tale_weaver/features/welcome/screens/welcome_screen.dart'
+    as _i6;
 
-abstract class $AppRouter extends _i8.RootStackRouter {
+abstract class $AppRouter extends _i7.RootStackRouter {
   $AppRouter({super.navigatorKey});
 
   @override
-  final Map<String, _i8.PageFactory> pagesMap = {
+  final Map<String, _i7.PageFactory> pagesMap = {
     AccountRoute.name: (routeData) {
-      return _i8.AutoRoutePage<dynamic>(
+      return _i7.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i1.AccountScreen(),
       );
     },
     CreateNewStoryRoute.name: (routeData) {
       final args = routeData.argsAs<CreateNewStoryRouteArgs>();
-      return _i8.AutoRoutePage<dynamic>(
+      return _i7.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: _i2.CreateNewMiddle(
           key: args.key,
@@ -42,34 +43,37 @@ abstract class $AppRouter extends _i8.RootStackRouter {
         ),
       );
     },
-    ForgotPasswordRoute.name: (routeData) {
-      return _i8.AutoRoutePage<dynamic>(
+    Home.name: (routeData) {
+      return _i7.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i3.ForgotPasswordScreen(),
+        child: const _i3.HomeScreen(),
       );
     },
-    LandingRoute.name: (routeData) {
-      return _i8.AutoRoutePage<dynamic>(
+    StoryViewRoute.name: (routeData) {
+      final args = routeData.argsAs<StoryViewRouteArgs>();
+      return _i7.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i4.LandingScreen(),
+        child: _i4.StoryViewScreen(
+          key: args.key,
+          id: args.id,
+        ),
       );
     },
-    LoginRoute.name: (routeData) {
-      return _i8.AutoRoutePage<dynamic>(
+    StudioPlayerRoute.name: (routeData) {
+      final args = routeData.argsAs<StudioPlayerRouteArgs>();
+      return _i7.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i5.LoginScreen(),
-      );
-    },
-    SignUpRoute.name: (routeData) {
-      return _i8.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i6.SignUpScreen(),
+        child: _i5.StudioPlayer(
+          key: args.key,
+          description: args.description,
+          voiceId: args.voiceId,
+        ),
       );
     },
     WelcomeRoute.name: (routeData) {
-      return _i8.AutoRoutePage<dynamic>(
+      return _i7.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i7.WelcomeScreen(),
+        child: const _i6.WelcomeScreen(),
       );
     },
   };
@@ -77,8 +81,8 @@ abstract class $AppRouter extends _i8.RootStackRouter {
 
 /// generated route for
 /// [_i1.AccountScreen]
-class AccountRoute extends _i8.PageRouteInfo<void> {
-  const AccountRoute({List<_i8.PageRouteInfo>? children})
+class AccountRoute extends _i7.PageRouteInfo<void> {
+  const AccountRoute({List<_i7.PageRouteInfo>? children})
       : super(
           AccountRoute.name,
           initialChildren: children,
@@ -86,16 +90,16 @@ class AccountRoute extends _i8.PageRouteInfo<void> {
 
   static const String name = 'AccountRoute';
 
-  static const _i8.PageInfo<void> page = _i8.PageInfo<void>(name);
+  static const _i7.PageInfo<void> page = _i7.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i2.CreateNewMiddle]
-class CreateNewStoryRoute extends _i8.PageRouteInfo<CreateNewStoryRouteArgs> {
+class CreateNewStoryRoute extends _i7.PageRouteInfo<CreateNewStoryRouteArgs> {
   CreateNewStoryRoute({
-    _i9.Key? key,
+    _i8.Key? key,
     required String description,
-    List<_i8.PageRouteInfo>? children,
+    List<_i7.PageRouteInfo>? children,
   }) : super(
           CreateNewStoryRoute.name,
           args: CreateNewStoryRouteArgs(
@@ -107,8 +111,8 @@ class CreateNewStoryRoute extends _i8.PageRouteInfo<CreateNewStoryRouteArgs> {
 
   static const String name = 'CreateNewStoryRoute';
 
-  static const _i8.PageInfo<CreateNewStoryRouteArgs> page =
-      _i8.PageInfo<CreateNewStoryRouteArgs>(name);
+  static const _i7.PageInfo<CreateNewStoryRouteArgs> page =
+      _i7.PageInfo<CreateNewStoryRouteArgs>(name);
 }
 
 class CreateNewStoryRouteArgs {
@@ -117,7 +121,7 @@ class CreateNewStoryRouteArgs {
     required this.description,
   });
 
-  final _i9.Key? key;
+  final _i8.Key? key;
 
   final String description;
 
@@ -128,65 +132,104 @@ class CreateNewStoryRouteArgs {
 }
 
 /// generated route for
-/// [_i3.ForgotPasswordScreen]
-class ForgotPasswordRoute extends _i8.PageRouteInfo<void> {
-  const ForgotPasswordRoute({List<_i8.PageRouteInfo>? children})
+/// [_i3.HomeScreen]
+class Home extends _i7.PageRouteInfo<void> {
+  const Home({List<_i7.PageRouteInfo>? children})
       : super(
-          ForgotPasswordRoute.name,
+          Home.name,
           initialChildren: children,
         );
 
-  static const String name = 'ForgotPasswordRoute';
+  static const String name = 'Home';
 
-  static const _i8.PageInfo<void> page = _i8.PageInfo<void>(name);
+  static const _i7.PageInfo<void> page = _i7.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i4.LandingScreen]
-class LandingRoute extends _i8.PageRouteInfo<void> {
-  const LandingRoute({List<_i8.PageRouteInfo>? children})
-      : super(
-          LandingRoute.name,
+/// [_i4.StoryViewScreen]
+class StoryViewRoute extends _i7.PageRouteInfo<StoryViewRouteArgs> {
+  StoryViewRoute({
+    _i8.Key? key,
+    required String id,
+    List<_i7.PageRouteInfo>? children,
+  }) : super(
+          StoryViewRoute.name,
+          args: StoryViewRouteArgs(
+            key: key,
+            id: id,
+          ),
           initialChildren: children,
         );
 
-  static const String name = 'LandingRoute';
+  static const String name = 'StoryViewRoute';
 
-  static const _i8.PageInfo<void> page = _i8.PageInfo<void>(name);
+  static const _i7.PageInfo<StoryViewRouteArgs> page =
+      _i7.PageInfo<StoryViewRouteArgs>(name);
+}
+
+class StoryViewRouteArgs {
+  const StoryViewRouteArgs({
+    this.key,
+    required this.id,
+  });
+
+  final _i8.Key? key;
+
+  final String id;
+
+  @override
+  String toString() {
+    return 'StoryViewRouteArgs{key: $key, id: $id}';
+  }
 }
 
 /// generated route for
-/// [_i5.LoginScreen]
-class LoginRoute extends _i8.PageRouteInfo<void> {
-  const LoginRoute({List<_i8.PageRouteInfo>? children})
-      : super(
-          LoginRoute.name,
+/// [_i5.StudioPlayer]
+class StudioPlayerRoute extends _i7.PageRouteInfo<StudioPlayerRouteArgs> {
+  StudioPlayerRoute({
+    _i8.Key? key,
+    required String description,
+    required String voiceId,
+    List<_i7.PageRouteInfo>? children,
+  }) : super(
+          StudioPlayerRoute.name,
+          args: StudioPlayerRouteArgs(
+            key: key,
+            description: description,
+            voiceId: voiceId,
+          ),
           initialChildren: children,
         );
 
-  static const String name = 'LoginRoute';
+  static const String name = 'StudioPlayerRoute';
 
-  static const _i8.PageInfo<void> page = _i8.PageInfo<void>(name);
+  static const _i7.PageInfo<StudioPlayerRouteArgs> page =
+      _i7.PageInfo<StudioPlayerRouteArgs>(name);
+}
+
+class StudioPlayerRouteArgs {
+  const StudioPlayerRouteArgs({
+    this.key,
+    required this.description,
+    required this.voiceId,
+  });
+
+  final _i8.Key? key;
+
+  final String description;
+
+  final String voiceId;
+
+  @override
+  String toString() {
+    return 'StudioPlayerRouteArgs{key: $key, description: $description, voiceId: $voiceId}';
+  }
 }
 
 /// generated route for
-/// [_i6.SignUpScreen]
-class SignUpRoute extends _i8.PageRouteInfo<void> {
-  const SignUpRoute({List<_i8.PageRouteInfo>? children})
-      : super(
-          SignUpRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'SignUpRoute';
-
-  static const _i8.PageInfo<void> page = _i8.PageInfo<void>(name);
-}
-
-/// generated route for
-/// [_i7.WelcomeScreen]
-class WelcomeRoute extends _i8.PageRouteInfo<void> {
-  const WelcomeRoute({List<_i8.PageRouteInfo>? children})
+/// [_i6.WelcomeScreen]
+class WelcomeRoute extends _i7.PageRouteInfo<void> {
+  const WelcomeRoute({List<_i7.PageRouteInfo>? children})
       : super(
           WelcomeRoute.name,
           initialChildren: children,
@@ -194,5 +237,5 @@ class WelcomeRoute extends _i8.PageRouteInfo<void> {
 
   static const String name = 'WelcomeRoute';
 
-  static const _i8.PageInfo<void> page = _i8.PageInfo<void>(name);
+  static const _i7.PageInfo<void> page = _i7.PageInfo<void>(name);
 }

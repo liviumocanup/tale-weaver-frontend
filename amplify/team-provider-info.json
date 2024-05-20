@@ -1,0 +1,38 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-taleweaverfrontend-dev-dadc6-authRole",
+      "UnauthRoleArn": "arn:aws:iam::347833557012:role/amplify-taleweaverfrontend-dev-dadc6-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::347833557012:role/amplify-taleweaverfrontend-dev-dadc6-authRole",
+      "Region": "eu-central-1",
+      "DeploymentBucketName": "amplify-taleweaverfrontend-dev-dadc6-deployment",
+      "UnauthRoleName": "amplify-taleweaverfrontend-dev-dadc6-unauthRole",
+      "StackName": "amplify-taleweaverfrontend-dev-dadc6",
+      "StackId": "arn:aws:cloudformation:eu-central-1:347833557012:stack/amplify-taleweaverfrontend-dev-dadc6/382dbd60-1422-11ef-8b61-0a500e592f1d",
+      "AmplifyAppId": "d2a6wxnf9xm710"
+    },
+    "categories": {
+      "auth": {
+        "taleweaverfrontendcb751bca": {
+          "userPoolId": "eu-central-1_kg6XtLncM",
+          "userPoolName": "frankfurt-tale-weaver",
+          "webClientId": "5qfl0j6iuciuqktdm13p1kaugt",
+          "nativeClientId": "5qfl0j6iuciuqktdm13p1kaugt",
+          "identityPoolId": "eu-central-1:fe25c96c-633c-4dcd-93d0-e692339491d1",
+          "identityPoolName": "TaleWeaverDev",
+          "allowUnauthenticatedIdentities": false,
+          "authRoleArn": "arn:aws:iam::347833557012:role/service-role/CognitoDevRole",
+          "authRoleName": "CognitoDevRole",
+          "unauthRoleArn": "arn:aws:iam::347833557012:role/AWSAmplifyUnauthenticated_forCognitoIdentity",
+          "unauthRoleName": "AWSAmplifyUnauthenticated_forCognitoIdentity"
+        }
+      },
+      "storage": {
+        "taleweaverfrontend77e7c12d": {
+          "bucketName": "tale-weaver",
+          "region": "eu-central-1"
+        }
+      }
+    }
+  }
+}

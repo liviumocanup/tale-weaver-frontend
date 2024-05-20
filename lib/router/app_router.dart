@@ -14,23 +14,9 @@ class AppRouter extends $AppRouter {
           page: WelcomeRoute.page,
           path: "/",
         ),
-        AutoRoute(
-          page: LoginRoute.page,
-        ),
-        AutoRoute(
-          page: SignUpRoute.page,
-        ),
-        AutoRoute(
-          page: ForgotPasswordRoute.page,
-        ),
-        AutoRoute(
-          page: LandingRoute.page,
-        ),
-        AutoRoute(
-          page: AccountRoute.page,
-        ),
-        AutoRoute(
-          page: CreateNewStoryRoute.page,
-        )
+        AutoRoute(page: Home.page),
+        AutoRoute(page: AccountRoute.page),
+        AutoRoute(page: StudioPlayerRoute.page),
+        AutoRoute(page: StoryViewRoute.page),
       ];
 }
