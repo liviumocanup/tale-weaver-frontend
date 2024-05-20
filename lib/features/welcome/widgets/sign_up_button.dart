@@ -15,7 +15,7 @@ class SignUpButton extends StatelessWidget {
       text: signUpString,
       press: () => replaceAllPages(context, const Home()),
       color: cPrimaryLightColor,
-      textColor: cBlackColor,
+      textColor: cAlwaysBlackColor,
     );
   }
 }

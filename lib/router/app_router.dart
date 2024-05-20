@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:tale_weaver/features/generate_story/screens/player_screen.dart';
 import 'package:tale_weaver/router/app_router.gr.dart';
 
 @AutoRouterConfig(

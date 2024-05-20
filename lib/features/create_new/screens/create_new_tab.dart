@@ -71,7 +71,7 @@ class _CreateNewStoryTabPageState extends State<CreateNewStoryTabPage> {
     bool isFullscreen = fullscreenState.isFullscreen;
 
     Widget loadingIndicator = const CupertinoActivityIndicator(
-      radius: 20.0,
+      radius: 15,
       color: cBlackColor,
     );
 
@@ -181,6 +181,14 @@ class _CreateNewStoryTabPageState extends State<CreateNewStoryTabPage> {
                                       ? exitFullscreen()
                                       : enterFullscreen();
                                 }),
+                                onToggleControls: () => setState(() {
+                                  _isControlsVisible = !_isControlsVisible;
+                                }),
+                                onMinimize: () => setState(() {
+                                  isFullscreen
+                                      ? exitFullscreen()
+                                      : Navigator.of(context).pop();
+                                }),
                               ),
                           ],
                         ),
@@ -209,6 +217,15 @@ class _CreateNewStoryTabPageState extends State<CreateNewStoryTabPage> {
                                             isFullscreen
                                                 ? exitFullscreen()
                                                 : enterFullscreen();
+                                          }),
+                                          onToggleControls: () => setState(() {
+                                            _isControlsVisible =
+                                                !_isControlsVisible;
+                                          }),
+                                          onMinimize: () => setState(() {
+                                            isFullscreen
+                                                ? exitFullscreen()
+                                                : Navigator.of(context).pop();
                                           }),
                                         ),
                                     ],

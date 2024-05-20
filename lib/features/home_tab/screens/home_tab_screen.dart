@@ -47,7 +47,7 @@ class HomeTabPage extends StatelessWidget {
     );
 
     return CupertinoPageScaffold(
-      backgroundColor: CupertinoColors.systemGroupedBackground,
+      backgroundColor: cGrayBackground,
       child: CustomScrollView(
         slivers: [
           const CollapsingAppBar(),

@@ -1,6 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
 import 'package:tale_weaver/shared/widgets/app_title.dart';
+import 'package:tale_weaver/shared/widgets/ui_overlay.dart';
 
 import '../widgets/background.dart';
 import '../widgets/welcome_greeting.dart';
@@ -17,6 +19,7 @@ class WelcomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    SystemChrome.setSystemUIOverlayStyle(uiOverlay);
 
     Widget mainPicture = Image.asset(
       mainPictureAssetPath,

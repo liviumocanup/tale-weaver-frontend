@@ -61,7 +61,7 @@ class _LibrarySectionState extends State<LibrarySection> {
   @override
   Widget build(BuildContext context) {
     return _isLoading
-        ? const CupertinoActivityIndicator()
+        ? const CupertinoActivityIndicator(radius: 15, color: cBlackColor)
         : CardSection(
             sectionName: myLibrary,
             cards: stories,

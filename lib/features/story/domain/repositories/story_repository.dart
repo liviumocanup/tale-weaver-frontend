@@ -60,4 +60,17 @@ class StoryRepository {
       throw Exception('Failed to create story');
     }
   }
+
+  Future<void> deleteStory(String id, String token) async {
+    final response = await http.delete(
+      Uri.parse('$baseUrl/story/$id'),
+      headers: {HttpHeaders.authorizationHeader: 'Bearer $token'},
+    );
+
+    if (response.statusCode != 200) {
+      print(response.statusCode);
+      print(response.body);
+      throw Exception('Failed to delete story');
+    }
+  }
 }

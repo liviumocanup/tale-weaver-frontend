@@ -78,8 +78,9 @@ class _ContentStudioFormState extends State<ContentStudioForm> {
           physics: const ClampingScrollPhysics(),
           children: [
             CupertinoFormSection.insetGrouped(
+              backgroundColor: cGrayBackground,
               margin: const EdgeInsets.all(12),
-              header: const Text(csStoryDetailsString),
+              header: const Text(csStoryDetailsString, style: TextStyle(color: cGrayColor)),
               footer: const Divider(),
               children: [
                 descriptionRow,
@@ -87,7 +88,8 @@ class _ContentStudioFormState extends State<ContentStudioForm> {
               ],
             ),
             CupertinoFormSection.insetGrouped(
-              header: const Text(csNarratorSettingsString),
+              backgroundColor: cGrayBackground,
+              header: const Text(csNarratorSettingsString, style: TextStyle(color: cGrayColor)),
               margin: const EdgeInsets.all(12),
               children: [
                 narratorRow,

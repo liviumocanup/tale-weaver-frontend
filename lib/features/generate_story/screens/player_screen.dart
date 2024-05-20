@@ -3,13 +3,15 @@ import 'package:provider/provider.dart';
 import 'package:tale_weaver/constants.dart';
 import 'package:tale_weaver/features/generate_story/providers/fullscreen_state.dart';
 import 'package:tale_weaver/features/generate_story/screens/video_player_screen.dart';
+import 'package:tale_weaver/features/story/domain/models/story.dart';
 import 'package:tale_weaver/shared/widgets/app_title.dart';
 import 'package:video_player/video_player.dart';
 
 class PlayerScreen extends StatefulWidget {
   final Uri videoUrl;
+  final Story story;
 
-  const PlayerScreen({super.key, required this.videoUrl});
+  const PlayerScreen({super.key, required this.videoUrl, required this.story});
 
   @override
   State<PlayerScreen> createState() => _PlayerScreenState();
@@ -38,24 +40,23 @@ class _PlayerScreenState extends State<PlayerScreen> {
     }
   }
 
-  Widget background(Widget child) {
-    return CupertinoPageScaffold(
-      backgroundColor: CupertinoColors.systemGroupedBackground,
-      navigationBar: const CupertinoNavigationBar(
-        previousPageTitle: csTitleString,
-        middle: AppTitle(),
-      ),
-      child: child,
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return _isLoading
-        ? background(const Center(child: CupertinoActivityIndicator()))
+        ? const CupertinoPageScaffold(
+            backgroundColor: cGrayBackground,
+            navigationBar: CupertinoNavigationBar(
+              backgroundColor: cGrayBackground,
+              middle: AppTitle(),
+            ),
+            child: Center(
+              child: CupertinoActivityIndicator(radius: 15, color: cBlackColor),
+            ),
+          )
         : ChangeNotifierProvider<FullscreenState>(
             create: (_) => FullscreenState(),
-            child: VideoPlayerScreen(controller: _controller),
+            child:
+                VideoPlayerScreen(controller: _controller, story: widget.story),
           );
   }
 

@@ -4,10 +4,25 @@ const cPrimaryColor = Color.fromRGBO(139, 126, 236, 1);
 const cPrimaryLightColor = Color.fromRGBO(192, 222, 255, 1);
 const cAlwaysWhiteColor = CupertinoColors.white;
 const cAlwaysBlackColor = CupertinoColors.black;
-const cWhiteColor = cAlwaysWhiteColor;
-const cBlackColor = cAlwaysBlackColor;
-
 const cGrayColor = CupertinoColors.systemGrey;
+const cGrayBackground = CupertinoColors.systemGroupedBackground;
+
+// Light Mode
+// const cWhiteColor = cAlwaysWhiteColor;
+// const cBlackColor = cAlwaysBlackColor;
+// const cLightBrightness = Brightness.light;
+// const cDarkBrightness = Brightness.dark;
+// const cCollapsingAppBarBackground = cGrayBackground;
+// final cOverlayColor = cGrayBackground.withOpacity(0.5);
+
+// Dark Mode
+const cWhiteColor = cAlwaysBlackColor;
+const cBlackColor = cAlwaysWhiteColor;
+const cLightBrightness = Brightness.dark;
+const cDarkBrightness = Brightness.light;
+const cCollapsingAppBarBackground = cAlwaysBlackColor;
+final cOverlayColor = cAlwaysBlackColor.withOpacity(0.5);
+
 // const kPrimaryColor = Color.fromRGBO(173, 162, 255, 1);
 // const kPrimaryLightColor = Color.fromRGBO(192, 222, 255, 1);
 

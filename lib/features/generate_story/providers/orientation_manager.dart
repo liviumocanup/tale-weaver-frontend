@@ -26,7 +26,7 @@ class OrientationManager {
       DeviceOrientation.landscapeLeft,
     ]);
 
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge,
         overlays: SystemUiOverlay.values);
   }
 }

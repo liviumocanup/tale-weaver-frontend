@@ -34,15 +34,21 @@ class AccountScreen extends StatelessWidget {
         RoundedButton(text: logOutString, press: () => pushPage(context));
 
     Widget avatar = const CircleAvatar(
-        radius: 50,
-        backgroundImage:
-            // TODO: fetch actual profile image
-            NetworkImage('https://source.unsplash.com/50x50/?portrait'));
+      backgroundColor: cGrayColor,
+      radius: 51,
+      child: CircleAvatar(
+        backgroundColor: cWhiteColor,
+          radius: 50,
+          backgroundImage:
+              // TODO: fetch actual profile image
+              NetworkImage('https://source.unsplash.com/50x50/?portrait')),
+    );
 
     return CupertinoPageScaffold(
+      backgroundColor: cGrayBackground,
       navigationBar: const CupertinoNavigationBar(
         middle: AppTitle(),
-        backgroundColor: cWhiteColor,
+        backgroundColor: cGrayBackground,
       ),
       child: Center(
         child: Column(

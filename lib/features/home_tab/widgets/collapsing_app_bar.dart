@@ -4,6 +4,7 @@ import 'package:tale_weaver/constants.dart';
 import 'package:tale_weaver/features/welcome/widgets/push_page_func.dart';
 import 'package:tale_weaver/router/app_router.gr.dart';
 import 'package:tale_weaver/shared/widgets/app_title.dart';
+import 'package:tale_weaver/shared/widgets/ui_overlay.dart';
 
 class CollapsingAppBar extends StatelessWidget {
   const CollapsingAppBar({super.key});
@@ -25,12 +26,14 @@ class CollapsingAppBar extends StatelessWidget {
     );
 
     return SliverAppBar(
-      backgroundColor: CupertinoColors.systemGroupedBackground,
+      backgroundColor: cCollapsingAppBarBackground,
+      surfaceTintColor: cCollapsingAppBarBackground,
       floating: true,
       snap: true,
       title: const AppTitle(),
       centerTitle: false,
       actions: <Widget>[notifications, account],
+      systemOverlayStyle: uiOverlay,
     );
   }
 }

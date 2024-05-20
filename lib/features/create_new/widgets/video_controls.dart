@@ -7,12 +7,16 @@ class VideoControls extends StatefulWidget {
   final VideoPlayerController controller;
   final bool isFullscreen;
   final VoidCallback onToggleFullscreen;
+  final VoidCallback onToggleControls;
+  final VoidCallback onMinimize;
 
   const VideoControls({
     super.key,
     required this.controller,
     required this.isFullscreen,
     required this.onToggleFullscreen,
+    required this.onToggleControls,
+    required this.onMinimize,
   });
 
   @override
@@ -101,9 +105,29 @@ class _VideoControlsState extends State<VideoControls> {
       ),
     );
 
+    Widget chevronDownBtn = CupertinoButton(
+      onPressed: widget.onMinimize,
+      child: const Icon(
+        CupertinoIcons.chevron_down,
+        color: cAlwaysWhiteColor,
+      ),
+    );
+
+    Widget closeBtn = CupertinoButton(
+      onPressed: widget.onToggleControls,
+      child: const Icon(
+        CupertinoIcons.xmark,
+        color: cAlwaysWhiteColor,
+      ),
+    );
+
     return Positioned.fill(
       child: Stack(
         children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [chevronDownBtn, closeBtn],
+          ),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[

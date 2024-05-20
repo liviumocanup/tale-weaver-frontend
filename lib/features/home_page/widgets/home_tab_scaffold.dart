@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:tale_weaver/constants.dart';
 import 'package:tale_weaver/features/generate_story/screens/content_studio.dart';
 import 'package:tale_weaver/features/home_tab/screens/home_tab_screen.dart';
+import 'package:tale_weaver/features/library_tab/screens/library_screen.dart';
 
 class HomeTabScaffold extends StatefulWidget {
   final String user;
@@ -21,23 +22,46 @@ class _HomeTabScaffoldState extends State<HomeTabScaffold> {
     });
   }
 
-  final List<BottomNavigationBarItem> _items = [
-    const BottomNavigationBarItem(
-        icon: Icon(CupertinoIcons.home), label: homeString),
-    const BottomNavigationBarItem(
-        icon: Icon(CupertinoIcons.create), label: contentStudioString),
-    const BottomNavigationBarItem(
-        icon: Icon(CupertinoIcons.book), label: libraryString)
-  ];
+  BottomNavigationBarItem _buildNavigationBarItem(
+      IconData icon, IconData activeIcon, String label, int index) {
+    return BottomNavigationBarItem(
+      icon: Icon(
+        _currentIndex == index ? activeIcon : icon,
+      ),
+      label: label,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
+    List<BottomNavigationBarItem> items = [
+      _buildNavigationBarItem(
+        CupertinoIcons.house,
+        CupertinoIcons.house_fill,
+        homeString,
+        0,
+      ),
+      _buildNavigationBarItem(
+        CupertinoIcons.create,
+        CupertinoIcons.create_solid,
+        contentStudioString,
+        1,
+      ),
+      _buildNavigationBarItem(
+        CupertinoIcons.book,
+        CupertinoIcons.book_fill,
+        libraryString,
+        2,
+      ),
+    ];
+
     return CupertinoTabScaffold(
       tabBar: CupertinoTabBar(
         currentIndex: _currentIndex,
         onTap: _onItemTapped,
-        backgroundColor: cWhiteColor,
-        items: _items,
+        backgroundColor: cGrayBackground,
+        items: items,
+        border: Border(top: BorderSide(color: cGrayColor.withOpacity(0.3))),
       ),
       tabBuilder: (context, index) {
         switch (index) {
@@ -47,7 +71,7 @@ class _HomeTabScaffoldState extends State<HomeTabScaffold> {
             );
           case 2:
             return CupertinoTabView(
-              builder: (context) => Container(),
+              builder: (context) => const LibraryScreen(),
             );
           case 0:
           default:

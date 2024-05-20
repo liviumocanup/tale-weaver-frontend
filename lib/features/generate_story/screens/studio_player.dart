@@ -21,6 +21,7 @@ class StudioPlayer extends StatefulWidget {
 
 class _StudioPlayerState extends State<StudioPlayer> {
   bool _isLoading = true;
+  late Story _story;
   late Uri _videoUrl;
 
   @override
@@ -44,6 +45,7 @@ class _StudioPlayerState extends State<StudioPlayer> {
       Uri uri = await S3Util.fetchResourceUrl(story.videoStorageKey);
 
       setState(() {
+        _story = story;
         _videoUrl = uri;
         _isLoading = false;
       });
@@ -56,13 +58,15 @@ class _StudioPlayerState extends State<StudioPlayer> {
   Widget build(BuildContext context) {
     return _isLoading
         ? const CupertinoPageScaffold(
-            backgroundColor: CupertinoColors.systemGroupedBackground,
+            backgroundColor: cGrayBackground,
             navigationBar: CupertinoNavigationBar(
-              previousPageTitle: csTitleString,
+              backgroundColor: cGrayBackground,
               middle: AppTitle(),
             ),
-            child: Center(child: CupertinoActivityIndicator()),
+            child: Center(
+                child:
+                    CupertinoActivityIndicator(radius: 15, color: cBlackColor)),
           )
-        : PlayerScreen(videoUrl: _videoUrl);
+        : PlayerScreen(videoUrl: _videoUrl, story: _story);
   }
 }
