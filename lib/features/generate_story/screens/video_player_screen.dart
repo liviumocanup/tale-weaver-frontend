@@ -7,6 +7,8 @@ import 'package:tale_weaver/features/create_new/widgets/video_controls.dart';
 import 'package:tale_weaver/features/generate_story/domain/models/subtitle.dart';
 import 'package:tale_weaver/features/story/domain/models/story.dart';
 import 'package:tale_weaver/features/story/domain/models/video_segment.dart';
+import 'package:tale_weaver/features/story/domain/repositories/story_repository.dart';
+import 'package:tale_weaver/utils/auth_util.dart';
 import 'package:video_player/video_player.dart';
 
 import '../providers/fullscreen_state.dart';
@@ -73,12 +75,6 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
           return;
         }
       }
-
-      if (_currentSubtitle != '') {
-        setState(() {
-          _currentSubtitle = '';
-        });
-      }
     });
   }
 
@@ -116,20 +112,81 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
       }),
     );
 
-    Widget title = const Padding(
-      padding: EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 10),
+    Future<void> saveTitle(String newValue) async {
+      setState(() {
+        widget.story.title = newValue;
+        print(widget.story.title);
+      });
+      String token = await AuthUtil.getBearerToken();
+      StoryRepository().updateStory(widget.story.id, widget.story.title, token);
+    }
+
+    void editTitle() {
+      TextEditingController titleController =
+          TextEditingController(text: widget.story.title);
+
+      showCupertinoModalPopup(
+        context: context,
+        builder: (BuildContext context) {
+          return CupertinoAlertDialog(
+            title: const Text('Edit Title'),
+            content: CupertinoTextField(
+              controller: titleController,
+              onSubmitted: (newValue) {
+                saveTitle(newValue);
+                Navigator.pop(context);
+              },
+            ),
+            actions: <Widget>[
+              CupertinoDialogAction(
+                child: const Text('Save'),
+                onPressed: () {
+                  saveTitle(titleController.text);
+                  Navigator.pop(context);
+                },
+              ),
+            ],
+          );
+        },
+      );
+    }
+
+    Widget title = Padding(
+      padding: const EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Title',
-              style: TextStyle(
+          const Text(
+            'Title',
+            style: TextStyle(
+              color: cBlackColor,
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 5),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                child: Text(
+                  widget.story.title,
+                  style: const TextStyle(color: cBlackColor, fontSize: 16),
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+              CupertinoButton(
+                padding: EdgeInsets.zero,
+                onPressed: () {
+                  editTitle();
+                },
+                child: const Icon(
+                  CupertinoIcons.pencil,
                   color: cBlackColor,
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold)),
-          SizedBox(height: 5),
-          Text(
-            'Very cool widget title',
-            style: TextStyle(color: cBlackColor, fontSize: 16),
+                  size: 20,
+                ),
+              ),
+            ],
           ),
         ],
       ),
@@ -147,7 +204,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
                   fontWeight: FontWeight.bold)),
           const SizedBox(height: 5),
           ConstrainedBox(
-            constraints: BoxConstraints(maxHeight: size.height * 0.3),
+            constraints: BoxConstraints(maxHeight: size.height * 0.205),
             child: Container(
               decoration: BoxDecoration(
                 color: cBlackColor.withOpacity(0.03),

@@ -36,9 +36,16 @@ class SmallCard extends StatelessWidget {
         child: Text(
           title,
           style: const TextStyle(
-            color: cWhiteColor,
-            fontSize: 13,
+            color: cAlwaysWhiteColor,
+            fontSize: 15,
             fontWeight: FontWeight.bold,
+            shadows: [
+              Shadow(
+                color: cAlwaysBlackColor,
+                offset: Offset(0, 0),
+                blurRadius: 15,
+              ),
+            ],
           ),
           softWrap: true,
         ),
@@ -48,17 +55,31 @@ class SmallCard extends StatelessWidget {
     Widget locationText = Text(
       location,
       style: const TextStyle(
-        color: cWhiteColor,
+        color: cAlwaysWhiteColor,
         fontSize: 12,
         fontStyle: FontStyle.italic,
+        shadows: [
+          Shadow(
+            color: cAlwaysBlackColor,
+            offset: Offset(0, 0),
+            blurRadius: 15,
+          ),
+        ],
       ),
     );
 
     Widget lengthText = Text(
       length,
       style: const TextStyle(
-        color: cWhiteColor,
+        color: cAlwaysWhiteColor,
         fontSize: 11,
+        shadows: [
+          Shadow(
+            color: cAlwaysBlackColor,
+            offset: Offset(0, 0),
+            blurRadius: 15,
+          ),
+        ],
       ),
     );
 

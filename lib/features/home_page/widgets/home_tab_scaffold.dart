@@ -34,6 +34,15 @@ class _HomeTabScaffoldState extends State<HomeTabScaffold> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    bool isLandscape =
+        MediaQuery.of(context).orientation == Orientation.landscape;
+
+    final double cardWidth =
+        isLandscape ? size.width * 0.35 : size.width * 0.45;
+    final double smallBlurCoverage = isLandscape ? 0.4 : 0.37;
+    final double smallCardHeight = isLandscape ? 150 : 170;
+
     List<BottomNavigationBarItem> items = [
       _buildNavigationBarItem(
         CupertinoIcons.house,
@@ -76,7 +85,12 @@ class _HomeTabScaffoldState extends State<HomeTabScaffold> {
           case 0:
           default:
             return CupertinoTabView(
-              builder: (context) => HomeTabPage(user: widget.user),
+              builder: (context) => HomeTabPage(
+                user: widget.user,
+                cardWidth: cardWidth,
+                smallCardHeight: smallCardHeight,
+                smallBlurCoverage: smallBlurCoverage,
+              ),
             );
         }
       },

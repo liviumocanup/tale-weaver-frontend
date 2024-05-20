@@ -36,12 +36,22 @@ class AccountScreen extends StatelessWidget {
     Widget avatar = const CircleAvatar(
       backgroundColor: cGrayColor,
       radius: 51,
+      // TODO: fetch actual profile image
       child: CircleAvatar(
-        backgroundColor: cWhiteColor,
+          backgroundColor: cWhiteColor,
           radius: 50,
-          backgroundImage:
-              // TODO: fetch actual profile image
-              NetworkImage('https://source.unsplash.com/50x50/?portrait')),
+          child: ClipOval(
+            child: FadeInImage(
+              placeholder: AssetImage('assets/gifs/cupertino_activity_indicator.gif'),
+              width: 100,
+              height: 100,
+              placeholderFit: BoxFit.cover,
+              image: NetworkImage('https://source.unsplash.com/50x50/?portrait'),
+              fit: BoxFit.fill,
+              fadeInDuration: Duration(milliseconds: 300),
+            ),
+          )
+      ),
     );
 
     return CupertinoPageScaffold(

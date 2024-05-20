@@ -91,6 +91,22 @@ const csDescriptionErrorString = 'Please enter a description';
 const csLocationString = 'Location';
 const csStoryDetailsString = 'Story Details';
 const csNarratorSettingsString = 'Narrator Settings';
-const csNarratorString = 'Voice ID';
+const csNarratorString = 'Voice';
+const csNarratorPhString = 'Select a Voice';
 const csNarratorErrorString = 'Please enter a voice ID';
 const csSFXString = 'Sound Settings';
+
+const Map<String, String> voices = {
+  'Josh (Smooth/Bold)': 'TxGEqnHWrfWFTfGW9XjX',
+  'Lily (Gentle)': 'pFZP5JQG7iQjIQuC4Bku',
+  'Clyde (Grizzled)': '2EiwWnXFnvU5JabPnv8n',
+  'Charlotte (Sensual)': 'XB0fDUnXU5powFXDhCwa',
+  'Thomas (Serene/Soft)': 'GBv7mTt0atIp3Br8iCZE',
+  'Nicole (Whispery)': 'piTKgcLEGmPE4e6mEKli',
+  'Chris (Easygoing)': 'iP95p4xoKVk53GoZ742B',
+
+  'Dorothy (Soothing)': 'ThT5KcBeYPX3keUQqHPh',
+  'Brian (Baritone)': 'nPczCjzI2devNBz1zQrb',
+  'Callum (Fierce)': 'N2lVS1w4EtoT3dr4eOWO',
+  'Ethan (ASMR)': 'g5CIjZEefAph4nQFvHAz',
+};

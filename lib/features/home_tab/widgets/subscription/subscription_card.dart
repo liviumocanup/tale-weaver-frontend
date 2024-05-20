@@ -25,23 +25,37 @@ class SubscriptionCard extends StatelessWidget {
     Widget titleText = Text(
       title,
       style: const TextStyle(
-        color: cBlackColor,
+        color: cAlwaysBlackColor,
         fontSize: 18,
         fontWeight: FontWeight.bold,
+        shadows: [
+          Shadow(
+            color: cAlwaysWhiteColor,
+            offset: Offset(0, 0),
+            blurRadius: 15,
+          ),
+        ],
       ),
     );
 
     Widget timeText = Text(
       time,
       style: const TextStyle(
-        color: cBlackColor,
+        color: cAlwaysBlackColor,
         fontSize: 11,
         fontWeight: FontWeight.bold,
+        shadows: [
+          Shadow(
+            color: cAlwaysWhiteColor,
+            offset: Offset(0, 0),
+            blurRadius: 15,
+          ),
+        ],
       ),
     );
 
     return OneCard(
-      id: '',
+      id: '-1',
       isAsset: true,
       imageAsset: imageAsset,
       blurCoverage: blurCoverage,

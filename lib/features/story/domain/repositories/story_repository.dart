@@ -73,4 +73,21 @@ class StoryRepository {
       throw Exception('Failed to delete story');
     }
   }
+
+  Future<void> updateStory(String id, String title, String token) async {
+    final response = await http.put(
+      Uri.parse('$baseUrl/story/$id'),
+      headers: {
+        HttpHeaders.contentTypeHeader: 'application/json',
+        HttpHeaders.authorizationHeader: 'Bearer $token',
+      },
+      body: json.encode({'title': title}),
+    );
+
+    if (response.statusCode != 200) {
+      print(response.statusCode);
+      print(response.body);
+      throw Exception('Failed to update story');
+    }
+  }
 }

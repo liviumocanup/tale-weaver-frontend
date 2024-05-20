@@ -30,6 +30,9 @@ class _LibraryScreenState extends State<LibraryScreen> {
 
   Future<void> _loadStories() async {
     try {
+      setState(() {
+        _isLoading = true;
+      });
       String token = await AuthUtil.getBearerToken();
       List<StoryPreview> stories = await StoryRepository().fetchStories(token);
 
@@ -130,6 +133,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
             },
           ),
           CupertinoActionSheetAction(
+            isDestructiveAction: true,
             child: const Row(
               children: [
                 SizedBox(width: 10),
@@ -158,24 +162,41 @@ class _LibraryScreenState extends State<LibraryScreen> {
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
       backgroundColor: cGrayBackground,
-      child: _isLoading
-          ? const Center(
-              child: CupertinoActivityIndicator(
-              radius: 15,
-              color: cBlackColor,
-            ))
-          : CustomScrollView(
-              slivers: [
-                const CupertinoSliverNavigationBar(
-                  backgroundColor: cGrayBackground,
-                  largeTitle: Text('Your Stories'),
-                  trailing: Row(mainAxisSize: MainAxisSize.min, children: [
-                    Icon(CupertinoIcons.search, size: 27),
-                    SizedBox(width: 12),
-                    Icon(CupertinoIcons.gear, size: 27),
-                  ]),
-                ),
-                SliverList(
+      child: CustomScrollView(
+        slivers: [
+          const CupertinoSliverNavigationBar(
+            backgroundColor: cGrayBackground,
+            largeTitle: Text('Your Stories'),
+            trailing: Row(mainAxisSize: MainAxisSize.min, children: [
+              Icon(CupertinoIcons.search, size: 27),
+              SizedBox(width: 12),
+              Icon(CupertinoIcons.gear, size: 27),
+            ]),
+          ),
+          CupertinoSliverRefreshControl(
+            onRefresh: _loadStories,
+          ),
+          _isLoading
+              ? const SliverFillRemaining(
+                  hasScrollBody: false,
+                  child: Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text('Your Library is loading...',
+                            style: TextStyle(
+                              color: cGrayColor,
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                            )),
+                        SizedBox(height: 10),
+                        CupertinoActivityIndicator(
+                            radius: 15, color: cBlackColor),
+                      ],
+                    ),
+                  ),
+                )
+              : SliverList(
                   delegate: SliverChildBuilderDelegate((context, index) {
                     return GestureDetector(
                       onTap: () {
@@ -207,15 +228,15 @@ class _LibraryScreenState extends State<LibraryScreen> {
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    const Padding(
-                                        padding:
-                                            EdgeInsets.only(left: 12, top: 5),
-                                        child: Text("FEAR")),
-                                    const Padding(
+                                    Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 12, top: 5),
+                                        child: Text(stories[index].title)),
+                                    Padding(
                                       padding:
-                                          EdgeInsets.only(left: 12, top: 8),
-                                      child: Text("4 months ago",
-                                          style: TextStyle(
+                                          const EdgeInsets.only(left: 12, top: 8),
+                                      child: Text(stories[index].timeAgo,
+                                          style: const TextStyle(
                                               color: cGrayColor, fontSize: 14)),
                                     ),
                                     // const SizedBox(height: 6),
@@ -270,8 +291,8 @@ class _LibraryScreenState extends State<LibraryScreen> {
                     );
                   }, childCount: stories.length),
                 ),
-              ],
-            ),
+        ],
+      ),
     );
   }
 }

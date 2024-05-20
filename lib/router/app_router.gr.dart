@@ -66,6 +66,7 @@ abstract class $AppRouter extends _i7.RootStackRouter {
         child: _i5.StudioPlayer(
           key: args.key,
           description: args.description,
+          voiceId: args.voiceId,
         ),
       );
     },
@@ -188,12 +189,14 @@ class StudioPlayerRoute extends _i7.PageRouteInfo<StudioPlayerRouteArgs> {
   StudioPlayerRoute({
     _i8.Key? key,
     required String description,
+    required String voiceId,
     List<_i7.PageRouteInfo>? children,
   }) : super(
           StudioPlayerRoute.name,
           args: StudioPlayerRouteArgs(
             key: key,
             description: description,
+            voiceId: voiceId,
           ),
           initialChildren: children,
         );
@@ -208,15 +211,18 @@ class StudioPlayerRouteArgs {
   const StudioPlayerRouteArgs({
     this.key,
     required this.description,
+    required this.voiceId,
   });
 
   final _i8.Key? key;
 
   final String description;
 
+  final String voiceId;
+
   @override
   String toString() {
-    return 'StudioPlayerRouteArgs{key: $key, description: $description}';
+    return 'StudioPlayerRouteArgs{key: $key, description: $description, voiceId: $voiceId}';
   }
 }
 

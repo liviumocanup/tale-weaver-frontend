@@ -55,7 +55,7 @@ class OneCard extends StatelessWidget {
         borderRadius:
             BorderRadius.vertical(bottom: Radius.circular(cardBorderRadius)),
         child: Container(
-          color: cBlackColor.withOpacity(blurOpacity),
+          color: cAlwaysBlackColor.withOpacity(blurOpacity),
           child: storyCardDescription,
         ),
       ),

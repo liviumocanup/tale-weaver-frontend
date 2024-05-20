@@ -22,7 +22,7 @@ class ExploreMoreSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget exploreCard1 = SmallCard(
-      id: '',
+      id: '-1',
       isAsset: true,
       title: explore1Title,
       location: explore1Location,
@@ -34,7 +34,7 @@ class ExploreMoreSection extends StatelessWidget {
     );
 
     Widget exploreCard2 = SmallCard(
-      id: '',
+      id: '-1',
       isAsset: true,
       title: explore2Title,
       location: explore2Location,
@@ -46,7 +46,7 @@ class ExploreMoreSection extends StatelessWidget {
     );
 
     Widget exploreCard3 = SmallCard(
-      id: '',
+      id: '-1',
       isAsset: true,
       title: explore3Title,
       location: explore3Location,

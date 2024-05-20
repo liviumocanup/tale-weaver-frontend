@@ -17,7 +17,8 @@ class CustomTabMiddleScaffold extends StatefulWidget {
   });
 
   @override
-  State<CustomTabMiddleScaffold> createState() => _CustomTabMiddleScaffoldState();
+  State<CustomTabMiddleScaffold> createState() =>
+      _CustomTabMiddleScaffoldState();
 }
 
 class _CustomTabMiddleScaffoldState extends State<CustomTabMiddleScaffold> {
@@ -33,7 +34,12 @@ class _CustomTabMiddleScaffoldState extends State<CustomTabMiddleScaffold> {
   Widget build(BuildContext context) {
     final fullscreen = Provider.of<FullscreenState>(context);
     final List<Widget> pages = [
-      const HomeTabPage(user: 'Test'),
+      const HomeTabPage(
+        user: 'Test',
+        cardWidth: 0,
+        smallCardHeight: 0,
+        smallBlurCoverage: 0,
+      ),
       const ContentStudio(),
       CreateNewStoryTabPage(description: widget.description),
     ];
@@ -59,16 +65,16 @@ class _CustomTabMiddleScaffoldState extends State<CustomTabMiddleScaffold> {
     );
 
     return Scaffold(
-      body: fullscreen.isFullscreen ?
-      pages[2] :
-      CustomScrollView(
-        slivers: [
-          const CollapsingAppBar(),
-          SliverToBoxAdapter(
-            child: pages[_selectedIndex],
-          )
-        ],
-      ),
+      body: fullscreen.isFullscreen
+          ? pages[2]
+          : CustomScrollView(
+              slivers: [
+                const CollapsingAppBar(),
+                SliverToBoxAdapter(
+                  child: pages[_selectedIndex],
+                )
+              ],
+            ),
       bottomNavigationBar: fullscreen.isFullscreen ? null : bottomNavigationBar,
     );
   }

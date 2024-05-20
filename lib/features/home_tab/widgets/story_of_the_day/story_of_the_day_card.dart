@@ -30,18 +30,32 @@ class StoryOfTheDayCard extends StatelessWidget {
     Widget titleText = Text(
       title,
       style: const TextStyle(
-        color: cWhiteColor,
+        color: cAlwaysWhiteColor,
         fontSize: 13,
         fontWeight: FontWeight.bold,
+        shadows: [
+          Shadow(
+            color: cAlwaysBlackColor,
+            offset: Offset(0, 0),
+            blurRadius: 15,
+          ),
+        ],
       ),
     );
 
     Widget locationText = Text(
       location,
       style: const TextStyle(
-        color: cWhiteColor,
+        color: cAlwaysWhiteColor,
         fontSize: 13,
         fontStyle: FontStyle.italic,
+        shadows: [
+          Shadow(
+            color: cAlwaysBlackColor,
+            offset: Offset(0, 0),
+            blurRadius: 15,
+          ),
+        ],
       ),
     );
 
@@ -52,8 +66,15 @@ class StoryOfTheDayCard extends StatelessWidget {
           description,
           style: const TextStyle(
             height: 1.1,
-            color: cWhiteColor,
+            color: cAlwaysWhiteColor,
             fontSize: 9,
+            shadows: [
+              Shadow(
+                color: cAlwaysBlackColor,
+                offset: Offset(0, 0),
+                blurRadius: 15,
+              ),
+            ],
           ),
           softWrap: true,
         ),
@@ -63,8 +84,15 @@ class StoryOfTheDayCard extends StatelessWidget {
     Widget lengthText = Text(
       length,
       style: const TextStyle(
-        color: cWhiteColor,
+        color: cAlwaysWhiteColor,
         fontSize: 12,
+        shadows: [
+          Shadow(
+            color: cAlwaysBlackColor,
+            offset: Offset(0, 0),
+            blurRadius: 15,
+          ),
+        ],
       ),
     );
 
@@ -85,7 +113,7 @@ class StoryOfTheDayCard extends StatelessWidget {
         ));
 
     return OneCard(
-      id: '',
+      id: '-1',
       isAsset: true,
       imageAsset: imageAsset,
       blurCoverage: blurCoverage,

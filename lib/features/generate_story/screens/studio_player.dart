@@ -12,8 +12,13 @@ import 'package:tale_weaver/utils/s3_util.dart';
 @RoutePage(name: 'StudioPlayerRoute')
 class StudioPlayer extends StatefulWidget {
   final String description;
+  final String voiceId;
 
-  const StudioPlayer({super.key, required this.description});
+  const StudioPlayer({
+    super.key,
+    required this.description,
+    required this.voiceId,
+  });
 
   @override
   State<StudioPlayer> createState() => _StudioPlayerState();
@@ -34,11 +39,11 @@ class _StudioPlayerState extends State<StudioPlayer> {
     try {
       String token = await AuthUtil.getBearerToken();
 
-      // TODO: Change to actual voiceId
+      // TODO: Words Per Story
       StoryCreationDto storyCreation = StoryCreationDto(
         input: widget.description,
-        voiceId: '2EiwWnXFnvU5JabPnv8n',
-        wordsPerStory: 10,
+        voiceId: widget.voiceId,
+        wordsPerStory: 1000,
       );
 
       Story story = await StoryRepository().createStory(storyCreation, token);
@@ -64,8 +69,20 @@ class _StudioPlayerState extends State<StudioPlayer> {
               middle: AppTitle(),
             ),
             child: Center(
-                child:
-                    CupertinoActivityIndicator(radius: 15, color: cBlackColor)),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text('Creating your story...',
+                      style: TextStyle(
+                        color: cGrayColor,
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                      )),
+                  SizedBox(height: 10),
+                  CupertinoActivityIndicator(radius: 15, color: cBlackColor),
+                ],
+              ),
+            ),
           )
         : PlayerScreen(videoUrl: _videoUrl, story: _story);
   }

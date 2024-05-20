@@ -50,7 +50,19 @@ class _PlayerScreenState extends State<PlayerScreen> {
               middle: AppTitle(),
             ),
             child: Center(
-              child: CupertinoActivityIndicator(radius: 15, color: cBlackColor),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text('Loading the video...',
+                      style: TextStyle(
+                        color: cGrayColor,
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                      )),
+                  SizedBox(height: 10),
+                  CupertinoActivityIndicator(radius: 15, color: cBlackColor),
+                ],
+              ),
             ),
           )
         : ChangeNotifierProvider<FullscreenState>(

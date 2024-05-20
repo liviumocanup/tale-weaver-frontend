@@ -5,7 +5,7 @@ class Story {
   final String videoStorageKey;
   final String thumbnailStorageKey;
   final List<VideoSegment> videoSegments;
-  final String title;
+  String title;
 
   Story({
     required this.id,

@@ -16,7 +16,7 @@ List<Widget> mapStoryPreviewsToSmallCards(
       height: smallCardHeight,
       blurCoverage: smallBlurCoverage,
       width: cardWidth,
-      location: '',
+      location: story.timeAgo,
       length: '',
     );
   }).toList();
