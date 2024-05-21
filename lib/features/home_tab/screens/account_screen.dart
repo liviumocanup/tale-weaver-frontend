@@ -7,17 +7,23 @@ import 'package:tale_weaver/constants.dart';
 import 'package:tale_weaver/router/app_router.gr.dart';
 import 'package:tale_weaver/shared/widgets/app_title.dart';
 import 'package:tale_weaver/shared/widgets/rounded_button.dart';
+import 'package:tale_weaver/utils/logger.dart';
 
 @RoutePage(name: 'AccountRoute')
 class AccountScreen extends StatelessWidget {
+  static const String loadingGif =
+      'assets/gifs/cupertino_activity_indicator.gif';
+  static const String profileImage =
+      'https://source.unsplash.com/50x50/?portrait';
+
   const AccountScreen({super.key});
 
   Future<void> signOutCurrentUser() async {
     final result = await Amplify.Auth.signOut();
     if (result is CognitoCompleteSignOut) {
-      safePrint('Sign out completed successfully');
+      AppLogger.info('Sign out completed successfully');
     } else if (result is CognitoFailedSignOut) {
-      safePrint('Error signing user out: ${result.exception.message}');
+      AppLogger.error('Error signing user out: ${result.exception.message}');
     }
   }
 
@@ -29,9 +35,10 @@ class AccountScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget logOutButton =
-        // TODO: return either rounded button or loading icon if tapped
-        RoundedButton(text: logOutString, press: () => pushPage(context));
+    Widget logOutButton = RoundedButton(
+      text: logOutString,
+      press: () => pushPage(context),
+    );
 
     Widget avatar = const CircleAvatar(
       backgroundColor: cGrayColor,
@@ -42,16 +49,15 @@ class AccountScreen extends StatelessWidget {
           radius: 50,
           child: ClipOval(
             child: FadeInImage(
-              placeholder: AssetImage('assets/gifs/cupertino_activity_indicator.gif'),
+              placeholder: AssetImage(loadingGif),
+              image: NetworkImage(profileImage),
               width: 100,
               height: 100,
               placeholderFit: BoxFit.cover,
-              image: NetworkImage('https://source.unsplash.com/50x50/?portrait'),
               fit: BoxFit.fill,
               fadeInDuration: Duration(milliseconds: 300),
             ),
-          )
-      ),
+          )),
     );
 
     return CupertinoPageScaffold(

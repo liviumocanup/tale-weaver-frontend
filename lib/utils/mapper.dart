@@ -21,5 +21,3 @@ List<Widget> mapStoryPreviewsToSmallCards(
     );
   }).toList();
 }
-
-

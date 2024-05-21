@@ -55,12 +55,11 @@ class MyAppState extends State<MyApp> {
         debugShowCheckedModeBanner: false,
         title: title,
         theme: const CupertinoThemeData(
-          primaryColor: cPrimaryColor,
-          primaryContrastingColor: cPrimaryLightColor,
-          scaffoldBackgroundColor: cWhiteColor,
-          barBackgroundColor: cWhiteColor,
-          brightness: cLightBrightness
-        ),
+            primaryColor: cPrimaryColor,
+            primaryContrastingColor: cPrimaryLightColor,
+            scaffoldBackgroundColor: cWhiteColor,
+            barBackgroundColor: cWhiteColor,
+            brightness: cLightBrightness),
         routerConfig: _appRouter.config(),
       ),
     );

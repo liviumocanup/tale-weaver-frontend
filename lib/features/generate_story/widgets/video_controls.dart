@@ -93,13 +93,11 @@ class _VideoControlsState extends State<VideoControls> {
         children: [
           TextSpan(
             text: formatDuration(position),
-            style: const TextStyle(
-                color: cAlwaysWhiteColor), // First duration in white
+            style: const TextStyle(color: cAlwaysWhiteColor),
           ),
           TextSpan(
             text: ' / ${formatDuration(duration)}',
-            style:
-                const TextStyle(color: cGrayColor), // Style for the separator
+            style: const TextStyle(color: cGrayColor),
           ),
         ],
       ),

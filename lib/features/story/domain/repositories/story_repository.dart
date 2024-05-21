@@ -3,8 +3,10 @@ import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:tale_weaver/constants.dart';
 import 'package:tale_weaver/features/generate_story/domain/models/story_creation_dto.dart';
-import 'package:tale_weaver/features/story/domain/models/story_preview.dart';
+import 'package:tale_weaver/utils/logger.dart';
+
 import '../models/story.dart';
+import '../models/story_preview.dart';
 
 class StoryRepository {
   final String baseUrl;
@@ -21,8 +23,8 @@ class StoryRepository {
       final List<dynamic> storiesJson = json.decode(response.body);
       return storiesJson.map((json) => StoryPreview.fromJson(json)).toList();
     } else {
-      print(response.statusCode);
-      print(response.body);
+      AppLogger.info(response.statusCode.toString());
+      AppLogger.debug(response.body);
       throw Exception('Failed to load stories');
     }
   }
@@ -36,8 +38,8 @@ class StoryRepository {
     if (response.statusCode == 200) {
       return Story.fromJson(json.decode(response.body));
     } else {
-      print(response.statusCode);
-      print(response.body);
+      AppLogger.info(response.statusCode.toString());
+      AppLogger.debug(response.body);
       throw Exception('Failed to load story');
     }
   }
@@ -55,8 +57,8 @@ class StoryRepository {
     if (response.statusCode == 201) {
       return Story.fromJson(json.decode(response.body));
     } else {
-      print(response.statusCode);
-      print(response.body);
+      AppLogger.info(response.statusCode.toString());
+      AppLogger.debug(response.body);
       throw Exception('Failed to create story');
     }
   }
@@ -68,8 +70,8 @@ class StoryRepository {
     );
 
     if (response.statusCode != 200) {
-      print(response.statusCode);
-      print(response.body);
+      AppLogger.info(response.statusCode.toString());
+      AppLogger.debug(response.body);
       throw Exception('Failed to delete story');
     }
   }
@@ -85,8 +87,8 @@ class StoryRepository {
     );
 
     if (response.statusCode != 200) {
-      print(response.statusCode);
-      print(response.body);
+      AppLogger.info(response.statusCode.toString());
+      AppLogger.debug(response.body);
       throw Exception('Failed to update story');
     }
   }

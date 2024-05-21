@@ -5,7 +5,6 @@ import '../card_section.dart';
 import '../small_card.dart';
 
 class ExploreMoreSection extends StatelessWidget {
-  // TODO: The number will not be known
   final double cardHeight;
   final double cardWidth;
   final double smallCardHeight;

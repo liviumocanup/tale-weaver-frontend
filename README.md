@@ -1,6 +1,5 @@
 # tale_weaver
-
-A new Flutter project.
+The frontend for the Tale Weaver app.
 
 ## Prerequisites
 * `Node.js` v14.x or later
@@ -8,18 +7,17 @@ A new Flutter project.
 * `git` v2.14.1 or later
 * `Flutter` v3.3 or later
 
-Create AWS Account and Install the Amplify CLI:
+Create an AWS Account and Install the Amplify CLI:
 ```bash
 npm install -g @aws-amplify/cli
 ```
 
-Configure the Amplify CLI
+Configure the Amplify CLI:
 ```bash
 amplify configure
 ```
 
 ## Getting Started
-
 To generate the routes:
 ```bash
 dart run build_runner build
@@ -33,4 +31,7 @@ flutter doctor
 dart fix --dry-run
 ```
 
-material: `rounded_input`, `divider_section`, `custom_tab_scaffold`
+Components that use Material Widgets: 
+* `content_studio_form`: Divider,
+* `account_screen`: Circle Avatar,
+* `collapsing_app_bar`: SliverAppBar,

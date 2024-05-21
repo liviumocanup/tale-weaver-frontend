@@ -1,15 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:tale_weaver/constants.dart';
-import 'package:tale_weaver/features/home_tab/widgets/explore_more/explore_more_section.dart';
-import 'package:tale_weaver/features/home_tab/widgets/library/library_section.dart';
-import 'package:tale_weaver/features/home_tab/widgets/story_of_the_day/story_of_the_day_section.dart';
-import 'package:tale_weaver/features/home_tab/widgets/subscription/subscription_section.dart';
-import 'package:tale_weaver/features/home_tab/widgets/collapsing_app_bar.dart';
 import 'package:tale_weaver/features/story/domain/models/story_preview.dart';
 import 'package:tale_weaver/features/story/domain/repositories/story_repository.dart';
 import 'package:tale_weaver/utils/auth_util.dart';
-import 'package:tale_weaver/utils/fetch_thumbnails.dart';
+import 'package:tale_weaver/utils/logger.dart';
 import 'package:tale_weaver/utils/mapper.dart';
+import 'package:tale_weaver/utils/s3_util.dart';
+
+import '../widgets/collapsing_app_bar.dart';
+import '../widgets/explore_more/explore_more_section.dart';
+import '../widgets/library/library_section.dart';
+import '../widgets/story_of_the_day/story_of_the_day_section.dart';
+import '../widgets/subscription/subscription_section.dart';
 import '../widgets/welcome_back.dart';
 
 class HomeTabPage extends StatefulWidget {
@@ -33,6 +35,7 @@ class HomeTabPage extends StatefulWidget {
 class _HomeTabPageState extends State<HomeTabPage> {
   List<Widget> _stories = [];
   bool _isLoading = true;
+  bool _isError = false;
 
   @override
   void initState() {
@@ -48,7 +51,7 @@ class _HomeTabPageState extends State<HomeTabPage> {
       String token = await AuthUtil.getBearerToken();
       List<StoryPreview> stories = await StoryRepository().fetchStories(token);
 
-      await fetchThumbnailUrls(stories);
+      await S3Util.fetchThumbnailUrls(stories);
 
       List<Widget> cards = mapStoryPreviewsToSmallCards(
         stories,
@@ -62,7 +65,11 @@ class _HomeTabPageState extends State<HomeTabPage> {
         _isLoading = false;
       });
     } catch (e) {
-      print('Failed to load story or image: $e');
+      setState(() {
+        _isLoading = false;
+        _isError = true;
+      });
+      AppLogger.error('Failed to load story or image: $e');
     }
   }
 
@@ -117,7 +124,7 @@ class _HomeTabPageState extends State<HomeTabPage> {
                               top: widget.cardWidth / 2 - 10,
                               bottom: widget.cardWidth / 2 - 45),
                           child: const Column(children: [
-                            Text('Your Library is loading...',
+                            Text(cLoadingLibraryInfo,
                                 style: TextStyle(
                                   color: cGrayColor,
                                   fontSize: 15,
@@ -128,7 +135,24 @@ class _HomeTabPageState extends State<HomeTabPage> {
                                 radius: 15, color: cBlackColor),
                           ]),
                         )
-                      : library;
+                      : _isError
+                          ? Padding(
+                              padding: EdgeInsets.only(
+                                  top: widget.cardWidth / 2 - 10,
+                                  bottom: widget.cardWidth / 2 - 45),
+                              child: const Column(children: [
+                                Text(cLibraryLoadError,
+                                    style: TextStyle(
+                                      color: cGrayColor,
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold,
+                                    )),
+                                SizedBox(height: 10),
+                                Icon(CupertinoIcons.xmark_circle_fill,
+                                    color: cGrayColor, size: 40),
+                              ]),
+                            )
+                          : library;
                 case 3:
                   return subscription;
                 case 4:

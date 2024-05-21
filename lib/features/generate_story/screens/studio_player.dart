@@ -1,13 +1,15 @@
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:tale_weaver/constants.dart';
-import 'package:tale_weaver/features/generate_story/domain/models/story_creation_dto.dart';
-import 'package:tale_weaver/features/generate_story/screens/player_screen.dart';
 import 'package:tale_weaver/features/story/domain/models/story.dart';
 import 'package:tale_weaver/features/story/domain/repositories/story_repository.dart';
 import 'package:tale_weaver/shared/widgets/app_title.dart';
 import 'package:tale_weaver/utils/auth_util.dart';
+import 'package:tale_weaver/utils/logger.dart';
 import 'package:tale_weaver/utils/s3_util.dart';
+
+import '../domain/models/story_creation_dto.dart';
+import 'player_screen.dart';
 
 @RoutePage(name: 'StudioPlayerRoute')
 class StudioPlayer extends StatefulWidget {
@@ -26,6 +28,7 @@ class StudioPlayer extends StatefulWidget {
 
 class _StudioPlayerState extends State<StudioPlayer> {
   bool _isLoading = true;
+  bool _isError = false;
   late Story _story;
   late Uri _videoUrl;
 
@@ -39,11 +42,10 @@ class _StudioPlayerState extends State<StudioPlayer> {
     try {
       String token = await AuthUtil.getBearerToken();
 
-      // TODO: Words Per Story
       StoryCreationDto storyCreation = StoryCreationDto(
         input: widget.description,
         voiceId: widget.voiceId,
-        wordsPerStory: 1000,
+        wordsPerStory: cWordsPerStory,
       );
 
       Story story = await StoryRepository().createStory(storyCreation, token);
@@ -55,7 +57,11 @@ class _StudioPlayerState extends State<StudioPlayer> {
         _isLoading = false;
       });
     } catch (e) {
-      print('Failed to load story or image: $e');
+      setState(() {
+        _isLoading = false;
+        _isError = true;
+      });
+      AppLogger.error('Failed to load story or image: $e');
     }
   }
 
@@ -72,7 +78,7 @@ class _StudioPlayerState extends State<StudioPlayer> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('Creating your story...',
+                  Text(cCreatingStoryInfo,
                       style: TextStyle(
                         color: cGrayColor,
                         fontSize: 15,
@@ -84,6 +90,30 @@ class _StudioPlayerState extends State<StudioPlayer> {
               ),
             ),
           )
-        : PlayerScreen(videoUrl: _videoUrl, story: _story);
+        : _isError
+            ? const CupertinoPageScaffold(
+                backgroundColor: cGrayBackground,
+                navigationBar: CupertinoNavigationBar(
+                  backgroundColor: cGrayBackground,
+                  middle: AppTitle(),
+                ),
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(CupertinoIcons.xmark_circle_fill,
+                          color: cGrayColor, size: 50),
+                      SizedBox(height: 20),
+                      Text(cErrorCreatingStory,
+                          style: TextStyle(
+                            color: cGrayColor,
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                          )),
+                    ],
+                  ),
+                ),
+              )
+            : PlayerScreen(videoUrl: _videoUrl, story: _story);
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:tale_weaver/constants.dart';
-import 'package:tale_weaver/features/home_tab/widgets/one_card.dart';
+
+import '../one_card.dart';
 
 class SubscriptionCard extends StatelessWidget {
   final String title;

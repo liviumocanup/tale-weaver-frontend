@@ -15,4 +15,18 @@ class AuthUtil {
       throw Exception('Error retrieving auth session: ${e.message}');
     }
   }
+
+  static Future<String> getUsername() async {
+    try {
+      final cognitoPlugin =
+          Amplify.Auth.getPlugin(AmplifyAuthCognito.pluginKey);
+
+      final result = await cognitoPlugin.fetchAuthSession();
+      final username = result.userPoolTokensResult.value.username;
+
+      return username;
+    } on AuthException catch (e) {
+      throw Exception('Error retrieving auth session: ${e.message}');
+    }
+  }
 }

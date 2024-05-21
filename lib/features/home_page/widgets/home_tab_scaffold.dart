@@ -3,18 +3,36 @@ import 'package:tale_weaver/constants.dart';
 import 'package:tale_weaver/features/generate_story/screens/content_studio.dart';
 import 'package:tale_weaver/features/home_tab/screens/home_tab_screen.dart';
 import 'package:tale_weaver/features/library_tab/screens/library_screen.dart';
+import 'package:tale_weaver/utils/auth_util.dart';
+import 'package:tale_weaver/utils/logger.dart';
 
 class HomeTabScaffold extends StatefulWidget {
-  final String user;
-
-  const HomeTabScaffold({super.key, required this.user});
+  const HomeTabScaffold({super.key});
 
   @override
   State<HomeTabScaffold> createState() => _HomeTabScaffoldState();
 }
 
 class _HomeTabScaffoldState extends State<HomeTabScaffold> {
+  late String username = '...';
   int _currentIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchUsername();
+  }
+
+  void _fetchUsername() async {
+    try {
+      final username = await AuthUtil.getUsername();
+      setState(() {
+        this.username = username;
+      });
+    } catch (e) {
+      AppLogger.error('Failed to fetch username: $e');
+    }
+  }
 
   void _onItemTapped(int index) {
     setState(() {
@@ -86,7 +104,7 @@ class _HomeTabScaffoldState extends State<HomeTabScaffold> {
           default:
             return CupertinoTabView(
               builder: (context) => HomeTabPage(
-                user: widget.user,
+                user: username,
                 cardWidth: cardWidth,
                 smallCardHeight: smallCardHeight,
                 smallBlurCoverage: smallBlurCoverage,

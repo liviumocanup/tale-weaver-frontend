@@ -29,6 +29,5 @@ class StoryPreview {
     return DateTime.parse(datePart);
   }
 
-
   String get timeAgo => timeago.format(createdAt);
 }
