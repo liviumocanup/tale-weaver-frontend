@@ -6,6 +6,7 @@ import 'package:tale_weaver/features/story/domain/models/story.dart';
 import 'package:tale_weaver/features/story/domain/repositories/story_repository.dart';
 import 'package:tale_weaver/shared/widgets/app_title.dart';
 import 'package:tale_weaver/utils/auth_util.dart';
+import 'package:tale_weaver/utils/logger.dart';
 import 'package:tale_weaver/utils/s3_util.dart';
 
 @RoutePage(name: 'StoryViewRoute')
@@ -32,7 +33,6 @@ class _StoryScreenState extends State<StoryViewScreen> {
 
   Future<void> _loadStory() async {
     try {
-      print('Loading story with id: ${widget.id}');
       if (widget.id == '-1') {
         setState(() {
           _isLoading = false;
@@ -51,7 +51,11 @@ class _StoryScreenState extends State<StoryViewScreen> {
         _isLoading = false;
       });
     } catch (e) {
-      print('Failed to load story: $e');
+      setState(() {
+        _isLoading = false;
+        _isError = true;
+      });
+      AppLogger.error('Failed to load story: $e');
     }
   }
 
@@ -59,21 +63,23 @@ class _StoryScreenState extends State<StoryViewScreen> {
   Widget build(BuildContext context) {
     return _isLoading
         ? const CupertinoPageScaffold(
-            backgroundColor: CupertinoColors.systemGroupedBackground,
+            backgroundColor: cGrayBackground,
             navigationBar: CupertinoNavigationBar(
-              backgroundColor: CupertinoColors.systemGroupedBackground,
+              backgroundColor: cGrayBackground,
               middle: AppTitle(),
             ),
             child: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('Getting the story...',
-                      style: TextStyle(
-                        color: cGrayColor,
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
-                      )),
+                  Text(
+                    cLoadingStoryInfo,
+                    style: TextStyle(
+                      color: cGrayColor,
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                   SizedBox(height: 10),
                   CupertinoActivityIndicator(radius: 15, color: cBlackColor),
                 ],
@@ -82,24 +88,29 @@ class _StoryScreenState extends State<StoryViewScreen> {
           )
         : _isError
             ? const CupertinoPageScaffold(
-                backgroundColor: CupertinoColors.systemGroupedBackground,
+                backgroundColor: cGrayBackground,
                 navigationBar: CupertinoNavigationBar(
-                  backgroundColor: CupertinoColors.systemGroupedBackground,
+                  backgroundColor: cGrayBackground,
                   middle: AppTitle(),
                 ),
                 child: Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(CupertinoIcons.xmark_circle_fill,
-                          color: cGrayColor, size: 50),
+                      Icon(
+                        CupertinoIcons.xmark_circle_fill,
+                        color: cGrayColor,
+                        size: 50,
+                      ),
                       SizedBox(height: 20),
-                      Text('Failed to load the story',
-                          style: TextStyle(
-                            color: cGrayColor,
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold,
-                          )),
+                      Text(
+                        cErrorLoadingStory,
+                        style: TextStyle(
+                          color: cGrayColor,
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ],
                   ),
                 ),

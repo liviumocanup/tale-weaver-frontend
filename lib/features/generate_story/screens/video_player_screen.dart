@@ -3,16 +3,16 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 import 'package:tale_weaver/constants.dart';
-import 'package:tale_weaver/features/create_new/widgets/video_controls.dart';
-import 'package:tale_weaver/features/generate_story/domain/models/subtitle.dart';
 import 'package:tale_weaver/features/story/domain/models/story.dart';
 import 'package:tale_weaver/features/story/domain/models/video_segment.dart';
 import 'package:tale_weaver/features/story/domain/repositories/story_repository.dart';
 import 'package:tale_weaver/utils/auth_util.dart';
 import 'package:video_player/video_player.dart';
 
+import '../domain/models/subtitle.dart';
 import '../providers/fullscreen_state.dart';
 import '../providers/orientation_manager.dart';
+import '../widgets/video_controls.dart';
 
 class VideoPlayerScreen extends StatefulWidget {
   final VideoPlayerController controller;
@@ -115,7 +115,6 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
     Future<void> saveTitle(String newValue) async {
       setState(() {
         widget.story.title = newValue;
-        print(widget.story.title);
       });
       String token = await AuthUtil.getBearerToken();
       StoryRepository().updateStory(widget.story.id, widget.story.title, token);
@@ -129,7 +128,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
         context: context,
         builder: (BuildContext context) {
           return CupertinoAlertDialog(
-            title: const Text('Edit Title'),
+            title: const Text(cEditTitleString),
             content: CupertinoTextField(
               controller: titleController,
               onSubmitted: (newValue) {
@@ -139,7 +138,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
             ),
             actions: <Widget>[
               CupertinoDialogAction(
-                child: const Text('Save'),
+                child: const Text(cSaveString),
                 onPressed: () {
                   saveTitle(titleController.text);
                   Navigator.pop(context);
@@ -157,7 +156,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text(
-            'Title',
+            cTitleString,
             style: TextStyle(
               color: cBlackColor,
               fontSize: 18,
@@ -197,7 +196,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text('Transcript',
+          const Text(cTranscriptString,
               style: TextStyle(
                   color: cBlackColor,
                   fontSize: 18,

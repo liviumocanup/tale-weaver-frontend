@@ -6,13 +6,10 @@ import '../widgets/home_tab_scaffold.dart';
 
 @RoutePage(name: 'Home')
 class HomeScreen extends StatelessWidget {
-  // TODO: Remove and replace with actual user name
-  static const String namePlaceholder = 'TestUser';
-
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const AuthenticatedView(child: HomeTabScaffold(user: namePlaceholder));
+    return const AuthenticatedView(child: HomeTabScaffold());
   }
 }

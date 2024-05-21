@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:tale_weaver/constants.dart';
-import 'package:tale_weaver/features/home_tab/widgets/card_section.dart';
+
+import '../card_section.dart';
 
 class LibrarySection extends StatelessWidget {
   final List<Widget> cards;

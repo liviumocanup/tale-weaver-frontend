@@ -40,8 +40,6 @@ dependencies:
   video_player: ^2.8.6
   provider: ^6.1.2
   http: ^1.2.1
-  aws_signature_v4: ^0.6.0
-  aws_common: ^0.7.0
   amplify_flutter: ^2.0.0
   amplify_auth_cognito: ^2.0.0
   amplify_authenticator: ^2.0.0
@@ -49,6 +47,7 @@ dependencies:
   amplify_storage_s3: ^2.0.0
   fluttertoast: ^8.2.5
   timeago: ^3.6.1
+  logger: ^2.3.0
 
 dev_dependencies:
   flutter_test:

@@ -7,6 +7,10 @@ const cAlwaysBlackColor = CupertinoColors.black;
 const cGrayColor = CupertinoColors.systemGrey;
 const cGrayBackground = CupertinoColors.systemGroupedBackground;
 
+// Story Feature
+const localhostString = 'http://10.0.2.2:8081';
+const cWordsPerStory = 100;
+
 // Light Mode
 // const cWhiteColor = cAlwaysWhiteColor;
 // const cBlackColor = cAlwaysBlackColor;
@@ -22,9 +26,6 @@ const cLightBrightness = Brightness.dark;
 const cDarkBrightness = Brightness.light;
 const cCollapsingAppBarBackground = cAlwaysBlackColor;
 final cOverlayColor = cAlwaysBlackColor.withOpacity(0.5);
-
-// const kPrimaryColor = Color.fromRGBO(173, 162, 255, 1);
-// const kPrimaryLightColor = Color.fromRGBO(192, 222, 255, 1);
 
 // Greeting
 const welcomeString = 'Welcome to,';
@@ -46,10 +47,6 @@ const storyOfTheDay = 'Story of the Day';
 const myLibrary = 'My Library';
 const subscriptionSummary = 'Subscription Summary';
 const exploreMore = 'Explore More';
-// const placeholderStoryTitleString = 'Story Title';
-// const placeholderCardTitleString = 'Card Title';
-// const String cLink =
-//     "https://cdn.flowplayer.com/a30bd6bc-f98b-47bc-abf5-97633d4faea0/hls/de3f6ca7-2db3-4689-8160-0f574a5996ad/playlist.m3u8";
 
 // Story of the Day
 const sotdTitlePh = 'Whispers';
@@ -80,8 +77,17 @@ const explore3Location = 'Misty Mountains';
 const explore3Length = '~18 min';
 const explore3ImageAsset = 'assets/images/mountains-1.jpg';
 
-// Story Feature
-const localhostString = 'http://10.0.2.2:8081';
+// Loading messages
+const cLoadingVideoInfo = 'Loading the video...';
+const cCreatingStoryInfo = 'Creating your story...';
+const cLoadingStoryInfo = 'Loading the story...';
+const cLoadingLibraryInfo = 'Loading your library...';
+
+// Error messages
+const cErrorLoadingVideo = 'Failed to start the video. Please try again!';
+const cErrorCreatingStory = 'Failed to create the story. Please try again!';
+const cErrorLoadingStory = 'Failed to load the story. Please try again!';
+const cLibraryLoadError = 'Failed to load your library. Please try again!';
 
 // Content Studio
 const csTitleString = 'Content Studio';
@@ -96,6 +102,21 @@ const csNarratorPhString = 'Select a Voice';
 const csNarratorErrorString = 'Please enter a voice ID';
 const csSFXString = 'Sound Settings';
 
+// Content Studio Form
+const cTranscriptString = 'Transcript';
+const cTitleString = 'Title';
+const cSaveString = 'Save';
+const cEditTitleString = 'Edit Title';
+
+// Library
+const libraryTitleString = 'Your Stories';
+const cCancelString = 'Cancel';
+const cRemoveString = 'Remove';
+const cDeleteString = 'Delete';
+const cDeleteConfirmation = 'Delete this Story?';
+const cShareString = 'Share';
+const cClipboardString = 'Story URL copied to clipboard.';
+
 const Map<String, String> voices = {
   'Josh (Smooth/Bold)': 'TxGEqnHWrfWFTfGW9XjX',
   'Lily (Gentle)': 'pFZP5JQG7iQjIQuC4Bku',
@@ -104,7 +125,6 @@ const Map<String, String> voices = {
   'Thomas (Serene/Soft)': 'GBv7mTt0atIp3Br8iCZE',
   'Nicole (Whispery)': 'piTKgcLEGmPE4e6mEKli',
   'Chris (Easygoing)': 'iP95p4xoKVk53GoZ742B',
-
   'Dorothy (Soothing)': 'ThT5KcBeYPX3keUQqHPh',
   'Brian (Baritone)': 'nPczCjzI2devNBz1zQrb',
   'Callum (Fierce)': 'N2lVS1w4EtoT3dr4eOWO',
