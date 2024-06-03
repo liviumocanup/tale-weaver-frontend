@@ -9,7 +9,7 @@ const cGrayBackground = CupertinoColors.systemGroupedBackground;
 
 // Story Feature
 const localhostString = 'http://10.0.2.2:8081';
-const cWordsPerStory = 100;
+const cWordsPerStory = 500;
 
 // Light Mode
 // const cWhiteColor = cAlwaysWhiteColor;

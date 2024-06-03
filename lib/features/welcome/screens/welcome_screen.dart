@@ -15,8 +15,6 @@ import '../widgets/sign_up_button.dart';
 
 @RoutePage(name: 'WelcomeRoute')
 class WelcomeScreen extends StatefulWidget {
-  static const String mainPictureAssetPath = 'assets/images/dandelion-lute.png';
-
   const WelcomeScreen({super.key});
 
   @override
@@ -24,6 +22,7 @@ class WelcomeScreen extends StatefulWidget {
 }
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
+  static const String mainPictureAssetPath = 'assets/images/open_book.png';
   bool _isLoading = true;
 
   @override
@@ -46,10 +45,10 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    SystemChrome.setSystemUIOverlayStyle(uiOverlay);
+    SystemChrome.setSystemUIOverlayStyle(uiOverlay(context));
 
     Widget mainPicture = Image.asset(
-      WelcomeScreen.mainPictureAssetPath,
+      mainPictureAssetPath,
       height: size.height * 0.3,
     );
 

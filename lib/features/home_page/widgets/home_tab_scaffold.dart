@@ -57,7 +57,7 @@ class _HomeTabScaffoldState extends State<HomeTabScaffold> {
         MediaQuery.of(context).orientation == Orientation.landscape;
 
     final double cardWidth =
-        isLandscape ? size.width * 0.35 : size.width * 0.45;
+        isLandscape ? size.width * 0.4 : size.width * 0.45;
     final double smallBlurCoverage = isLandscape ? 0.4 : 0.37;
     final double smallCardHeight = isLandscape ? 150 : 170;
 

@@ -33,7 +33,7 @@ class CollapsingAppBar extends StatelessWidget {
       title: const AppTitle(),
       centerTitle: false,
       actions: <Widget>[notifications, account],
-      systemOverlayStyle: uiOverlay,
+      systemOverlayStyle: uiOverlay(context),
     );
   }
 }
