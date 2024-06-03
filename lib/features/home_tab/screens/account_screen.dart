@@ -3,10 +3,13 @@ import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:tale_weaver/constants.dart';
 import 'package:tale_weaver/router/app_router.gr.dart';
+import 'package:tale_weaver/shared/theme/theme_switch.dart';
 import 'package:tale_weaver/shared/widgets/app_title.dart';
 import 'package:tale_weaver/shared/widgets/rounded_button.dart';
+import 'package:tale_weaver/shared/widgets/ui_overlay.dart';
 import 'package:tale_weaver/utils/logger.dart';
 
 @RoutePage(name: 'AccountRoute')
@@ -35,9 +38,12 @@ class AccountScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(uiOverlay(context));
+
     Widget logOutButton = RoundedButton(
       text: logOutString,
       press: () => pushPage(context),
+      textColor: cAlwaysWhiteColor,
     );
 
     Widget avatar = const CircleAvatar(
@@ -69,7 +75,13 @@ class AccountScreen extends StatelessWidget {
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [avatar, const SizedBox(height: 30), logOutButton],
+          children: [
+            avatar,
+            const SizedBox(height: 30),
+            logOutButton,
+            const SizedBox(height: 30),
+            const ThemeToggleSwitch(),
+          ],
         ),
       ),
     );

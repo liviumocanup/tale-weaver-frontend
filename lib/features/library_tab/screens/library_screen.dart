@@ -314,26 +314,26 @@ class _LibraryScreenState extends State<LibraryScreen> {
                                       children: [
                                         storyTitle(index),
                                         storyTimeAgo(index),
-                                        Row(
-                                          children: [
-                                            likeButton,
-                                            const Text(
-                                              '0',
-                                              style: TextStyle(
-                                                color: cGrayColor,
-                                                fontSize: 14,
-                                              ),
-                                            ),
-                                            commentButton,
-                                            const Text(
-                                              '0',
-                                              style: TextStyle(
-                                                color: cGrayColor,
-                                                fontSize: 14,
-                                              ),
-                                            ),
-                                          ],
-                                        )
+                                        // Row(
+                                        //   children: [
+                                        //     likeButton,
+                                        //     const Text(
+                                        //       '0',
+                                        //       style: TextStyle(
+                                        //         color: cGrayColor,
+                                        //         fontSize: 14,
+                                        //       ),
+                                        //     ),
+                                        //     commentButton,
+                                        //     const Text(
+                                        //       '0',
+                                        //       style: TextStyle(
+                                        //         color: cGrayColor,
+                                        //         fontSize: 14,
+                                        //       ),
+                                        //     ),
+                                        //   ],
+                                        // )
                                       ],
                                     ),
                                   ],

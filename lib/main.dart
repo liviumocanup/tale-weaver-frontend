@@ -4,13 +4,23 @@ import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:amplify_storage_s3/amplify_storage_s3.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 import 'package:tale_weaver/constants.dart';
 import 'package:tale_weaver/router/app_router.dart';
+import 'package:tale_weaver/shared/theme/dark_theme.dart';
+import 'package:tale_weaver/shared/theme/theme_manager.dart';
+import 'package:tale_weaver/shared/widgets/ui_overlay.dart';
 
 import 'amplifyconfiguration.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => ThemeManager(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatefulWidget {
@@ -45,6 +55,9 @@ class MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    final themeManager = Provider.of<ThemeManager>(context);
+    SystemChrome.setSystemUIOverlayStyle(uiOverlay(context));
+
     return Authenticator(
       child: CupertinoApp.router(
         localizationsDelegates: const [
@@ -54,12 +67,7 @@ class MyAppState extends State<MyApp> {
         ],
         debugShowCheckedModeBanner: false,
         title: title,
-        theme: const CupertinoThemeData(
-            primaryColor: cPrimaryColor,
-            primaryContrastingColor: cPrimaryLightColor,
-            scaffoldBackgroundColor: cWhiteColor,
-            barBackgroundColor: cWhiteColor,
-            brightness: cLightBrightness),
+        theme: themeManager.isDarkMode ? darkTheme : lightTheme,
         routerConfig: _appRouter.config(),
       ),
     );
